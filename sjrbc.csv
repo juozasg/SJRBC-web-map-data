@@ -1,4 +1,4 @@
-siteId,date,rain,wetWeatherOrBaseflow,wetWeatherOrBaseflowRecoded,ph,temp     ,do,bod   ,bodPercent,chlorides,spc,tds,ecoli,nitrates,phosphorus,turbidity,tss,flow
+siteId,date,rain,wetWeatherOrBaseflow,wetWeatherOrBaseflowRecoded,ph,temp,do,bod,bodPercent,chlorides,spc,tds,ecoli,nitrates,phosphorus,turbidity,tss,flow
 sjrbc-1,2014-04-23,Y,1,WW,7.6,8.9,9.14,0.7,8.6,16.7,564,288,0,4.8,0.35,3,31,1.755
 sjrbc-1,2014-05-29,Y,1,WW,7.3,16.2,7.74,1.5,18.73,14.9,610,311,2400,10.1,0.62,70,99,4.577
 sjrbc-1,2014-06-27,Y,1,WW,7.67,18.3,7.48,0,0,17.9,715,365,600,3.2,0.46,51,58,2.565
