@@ -74,6 +74,8 @@ elkhart-65,Little Elkhart River - CR 35,,41.70999946,-85.72704154
 elkhart-7,Elkhart River - CR 18,,41.65966918,-85.91629468
 elkhart-8,Elkhart River - CR 40,,41.54293366,-85.8357933
 elkhart-9,Elkhart River - CR 43,,41.50543856,-85.67344465
+elkhart-66,Haverstick Darkwood Ditch - CR 7,,41.46647,-85.982386
+elkhart-67,Pine Creek - CR 20,,41.645486,-85.833677
 fish-1,Auten Ditch @Locust Road (S),,41.62611111,-86.28194444
 fish-10,Christiana Creek@Bristol St. (Willowdale Park),,41.70166667,-85.97972222
 fish-11,Christiana Creek@Cassopolis Above,,41.69555556,-85.97194444
@@ -166,6 +168,12 @@ fish-9,Bowman Creek@Studebaker Golf Course,,41.65305556,-86.24194444
 fish-90,Yellow Creek@Concord High School,,41.63638889,-85.92611111
 fish-91,Yellow Creek@CR 32,,41.57972222,-85.92916667
 fish-92,Yellow Creek@US 20 Bypass,,41.65555556,-85.93111111
+fish-93,Bowman Creek@Green Tech,,41.647293,-86.253745
+fish-94,Elkhart River@Elkhart Ave,,41.685108,-85.969204
+fish-95,Elkhart River@Prairie Street,,41.686594,-85.964199
+fish-96,Juday Creek@Driftwood Drive,,41.705695,-86.196078
+fish-97,Juday Creek@Holy Cross Parkway,,41.702786,-86.178168
+fish-98,St. Joseph River@Michigan Street (B),,41.687745,-86.254063
 invert-1,Abbott Creek@M Drive,,42.1519,-85.2447
 invert-10,Bear Creek@Flech,,42.06453,-85.48071
 invert-100,Dowagiac River@Yaw Street,,41.9984828,-86.1558509
@@ -665,3 +673,5 @@ steuben-6,Carpenter Ditch @W 200 N,,41.671528,-85.025111
 steuben-7,Pigeon Creek@S Bill Deller Rd,,41.596389,-84.975556
 steuben-8,Pigeon Creek@Old US HWY 27,,41.576833,-85.008667
 steuben-9,Turkey Creek@S 800 W,,41.541278,-85.139139
+invert-440,Elkhart River@Elkhart Ave,,41.685108,-85.969204
+invert-441,Lily Creek (OTD)@Park Six Drive,,41.72638889,-85.95638889
