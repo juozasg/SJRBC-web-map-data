@@ -7,3 +7,10 @@ units:
   sedimentReduction: tons/yr
   phosphorusReduction: lbs./year
   nitrogenReduction: lbs./year
+
+standards:
+  ph: null
+  do: 
+  temp:
+  spc: 
+  tss:
