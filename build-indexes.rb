@@ -1,20 +1,25 @@
 require "rgeo"
-puts "Yay" if RGeo::Geos.capi_supported?
-
-
+require 'csv'
 require 'rgeo/geo_json'
 
+puts "Yay" if RGeo::Geos.capi_supported?
 
-# str1 = '{"type":"Point","coordinates":[1,2]}'
-# file = 'geojson/counties.geojson'
 file = 'geojson/huc10.geojson'
-json = RGeo::GeoJSON.decode(File.read(file))
-f = json[0]
-f['huc10']
+features = RGeo::GeoJSON.decode(File.read(file))
+rows = CSV.read('sites/sites.csv', headers: true)
 
+indexRows = ['siteId','huc10']
 
+factory = RGeo::Geographic.spherical_factory
+rows.each do |row|
+	point = factory.point(row['lon'].to_f, row['lat'].to_f)
+	matching_feature = features.find { |feature| feature.geometry.contains?(point) }
+	huc10 = matching_feature ? matching_feature['huc10'] : ''
+	index = row['siteId'] + ',' + huc10
+	# puts index
+	indexRows << index
+end
 
-require 'csv'
-CSV.read("sites.csv")
+File.write('indexes/sites.csv', indexRows.join("\n"))
 
 
