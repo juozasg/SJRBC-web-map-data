@@ -8,7 +8,7 @@ file = 'geojson/huc10.geojson'
 features = RGeo::GeoJSON.decode(File.read(file))
 rows = CSV.read('sites/sites.csv', headers: true)
 
-indexRows = ['siteId','huc10']
+indexRows = ['siteId,huc10']
 
 factory = RGeo::Geographic.spherical_factory
 rows.each do |row|
