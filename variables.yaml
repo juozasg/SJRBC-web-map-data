@@ -1,16 +1,92 @@
 labels:
+  temp: Temperature
+  flow: Gage Flow
+  height: Gage Height
+  wet: Ground Condition is Wet
+
+  do: Dissolved Oxygen
+  doContactTank: Dissolved Oxygen - Contact Tank
+  doOutfall: Dissolved Oxygen - Outfall
+  bod: Biological Oxygen Demand
+  bodPercent: Biological Oxygen Demand
+  doPerc: Dissolved Oxygen % Saturation
+
+  ecoli: E. Coli
+  fishIbi: Fish IBI
+  invertMacro: Invertebrate Macro Score
+  invertIndiana: Invertebrate Indiana Score
+  invertMichigan: Invertebrate Michigan Score
+  chlorophyll: Chlorophyll-a
+
+  chlorides: Chlorides
+  nitrates: Nitrates
+  phosphorus: Phosphorus
+  ph: pH
+
+  spc: Specific Conductance
+  tds: Total Dissolved Solids
+  tss: Total Suspended Solids
+  turbidity: Turbidity
+
   sedimentReduction: Sediment Reduction
   phosphorusReduction: Phosphorus Reduction
   nitrogenReduction: Nitrogen Reduction
 
 units:
+  bod: mg/L
+  bodPercent: "%"
+  chlorides: mg/L
+  datainfo: days ago
+  do: mg/L
+  doContactTank: mg/L
+  doOutfall: mg/L
+  ecoli: CFU
+  flow: ft^3/s
+  height: ft
+  nitrates: mg/L
+  phosphorus: mg/L
+  spc: uS/cm
+  tds: mg/L
+  temp: C
+  tss: mg/L
+  turbidity: NTU
+  doPerc: "%"
+  chlorophyll: ug L
+  wet: Ground Condition is Wet
   sedimentReduction: tons/yr
   phosphorusReduction: lbs./year
   nitrogenReduction: lbs./year
 
+numberFormat:
+  ecoli: "%d"
+  flow: "%d"
+  nitrates: "%.2f"
+  ph: "%.2f"
+  phosphorus: "%.2f"
+  spc: "%d"
+  tds: "%d"
+  turbidity: "%d"
+  fishIbi: "%d"
+  invertMacro: "%d"
+  invertIndiana: "%d"
+  invertMichigan: "%d"
+  doPerc: "%.1f"
+  chlorophyll: "%.1f"
+
+categories:
+  wet:
+    labels:
+      "0": Dry
+      "1": Wet
+      null: "Unknown"
+    colors:
+      "0": "#00CC44"
+      "1": "#0000FF"
+      null: "#000000"
+
 standards:
   ph: null
-  do: 
+  do:
   temp:
-  spc: 
+  spc:
   tss:
