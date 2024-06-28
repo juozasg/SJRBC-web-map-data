@@ -8,7 +8,7 @@ labels:
   doContactTank: Dissolved Oxygen - Contact Tank
   doOutfall: Dissolved Oxygen - Outfall
   bod: Biological Oxygen Demand
-  bodPercent: Biological Oxygen Demand
+  bodPercent: Biological Oxygen Demand %
   doPerc: Dissolved Oxygen % Saturation
 
   ecoli: E. Coli
