@@ -2,7 +2,7 @@ labels:
   temp: Temperature
   flow: Gage Flow
   height: Gage Height
-  wet: Ground Condition is Wet
+  wetWeatherOrBaseflow: Ground is Wet
 
   do: Dissolved Oxygen
   doContactTank: Dissolved Oxygen - Contact Tank
@@ -72,6 +72,7 @@ numberFormat:
   invertMichigan: "%d"
   doPerc: "%.1f"
   chlorophyll: "%.1f"
+  wetWeatherOrBaseflow: "%d"
 
 categories:
   wet:
