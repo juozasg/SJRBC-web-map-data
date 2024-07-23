@@ -1,93 +1,121 @@
-labels:
-  temp: Temperature
-  flow: Gage Flow
-  height: Gage Height
-  wetWeatherOrBaseflow: Ground is Wet
+invertNarrative:
+  label: Invertebrate Health
+  units: ""
+  categories:
+    Poor:
+      label: Poor
+      color: "#FF0000"
+    Low_Fair:
+      label: Low Fair
+    Fair:
+      label: Fair
+    Acceptable:
+      label: Acceptable
+    Marg_Good:
+      label: Marginally Good
+    Good:
+      label: Good
+    Very_Good:
+      label: Very Good
+    Excellent:
+      label: Excellent
+    Exceptional:
+      label: Exceptional
+      color: "#00FF00"
+    default:
+      label: Unknown
+      color: "#777777"
 
-  do: Dissolved Oxygen
-  doContactTank: Dissolved Oxygen - Contact Tank
-  doOutfall: Dissolved Oxygen - Outfall
-  bod: Biological Oxygen Demand
-  bodPercent: Biological Oxygen Demand %
-  doPerc: Dissolved Oxygen % Saturation
+# labels:
+#   temp: Temperature
+#   flow: Gage Flow
+#   height: Gage Height
+#   wetWeatherOrBaseflow: Ground is Wet
 
-  ecoli: E. Coli
-  fishIbi: Fish IBI
-  invertMacro: Invertebrate Macro Score
-  invertIndiana: Invertebrate Indiana Score
-  invertMichigan: Invertebrate Michigan Score
-  chlorophyll: Chlorophyll-a
+#   do: Dissolved Oxygen
+#   doContactTank: Dissolved Oxygen - Contact Tank
+#   doOutfall: Dissolved Oxygen - Outfall
+#   bod: Biological Oxygen Demand
+#   bodPercent: Biological Oxygen Demand %
+#   doPerc: Dissolved Oxygen % Saturation
 
-  chlorides: Chlorides
-  nitrates: Nitrates
-  phosphorus: Phosphorus
-  ph: pH
+#   ecoli: E. Coli
+#   fishIbi: Fish IBI
+#   invertMacro: Invertebrate Macro Score
+#   invertIndiana: Invertebrate Indiana Score
+#   invertMichigan: Invertebrate Michigan Score
+#   chlorophyll: Chlorophyll-a
 
-  spc: Specific Conductance
-  tds: Total Dissolved Solids
-  tss: Total Suspended Solids
-  turbidity: Turbidity
+#   chlorides: Chlorides
+#   nitrates: Nitrates
+#   phosphorus: Phosphorus
+#   ph: pH
 
-  sedimentReduction: Sediment Reduction
-  phosphorusReduction: Phosphorus Reduction
-  nitrogenReduction: Nitrogen Reduction
+#   spc: Specific Conductance
+#   tds: Total Dissolved Solids
+#   tss: Total Suspended Solids
+#   turbidity: Turbidity
 
-units:
-  bod: mg/L
-  bodPercent: "%"
-  chlorides: mg/L
-  datainfo: days ago
-  do: mg/L
-  doContactTank: mg/L
-  doOutfall: mg/L
-  ecoli: CFU
-  flow: ft^3/s
-  height: ft
-  nitrates: mg/L
-  phosphorus: mg/L
-  spc: uS/cm
-  tds: mg/L
-  temp: C
-  tss: mg/L
-  turbidity: NTU
-  doPerc: "%"
-  chlorophyll: ug L
-  wet: Ground Condition is Wet
-  sedimentReduction: tons/yr
-  phosphorusReduction: lbs./year
-  nitrogenReduction: lbs./year
+#   sedimentReduction: Sediment Reduction
+#   phosphorusReduction: Phosphorus Reduction
+#   nitrogenReduction: Nitrogen Reduction
 
-numberFormat:
-  ecoli: "%d"
-  flow: "%d"
-  nitrates: "%.2f"
-  ph: "%.2f"
-  phosphorus: "%.2f"
-  spc: "%d"
-  tds: "%d"
-  turbidity: "%d"
-  fishIbi: "%d"
-  invertMacro: "%d"
-  invertIndiana: "%d"
-  invertMichigan: "%d"
-  doPerc: "%.1f"
-  chlorophyll: "%.1f"
-  wetWeatherOrBaseflow: "%d"
+# units:
+#   bod: mg/L
+#   bodPercent: "%"
+#   chlorides: mg/L
+#   datainfo: days ago
+#   do: mg/L
+#   doContactTank: mg/L
+#   doOutfall: mg/L
+#   ecoli: CFU
+#   flow: ft^3/s
+#   height: ft
+#   nitrates: mg/L
+#   phosphorus: mg/L
+#   spc: uS/cm
+#   tds: mg/L
+#   temp: C
+#   tss: mg/L
+#   turbidity: NTU
+#   doPerc: "%"
+#   chlorophyll: ug L
+#   wet: Ground Condition is Wet
+#   sedimentReduction: tons/yr
+#   phosphorusReduction: lbs./year
+#   nitrogenReduction: lbs./year
 
-categories:
-  wet:
-    labels:
-      "0": Dry
-      "1": Wet
-      null: "Unknown"
-    colors:
-      "0": "#00CC44"
-      "1": "#0000FF"
-      null: "#000000"
+# numberFormat:
+#   ecoli: "%d"
+#   flow: "%d"
+#   nitrates: "%.2f"
+#   ph: "%.2f"
+#   phosphorus: "%.2f"
+#   spc: "%d"
+#   tds: "%d"
+#   turbidity: "%d"
+#   fishIbi: "%d"
+#   invertMacro: "%d"
+#   invertIndiana: "%d"
+#   invertMichigan: "%d"
+#   doPerc: "%.1f"
+#   chlorophyll: "%.1f"
+#   wetWeatherOrBaseflow: "%d"
 
-standards:
-  ph: null
-  do:
-  temp:
-  spc:
-  tss:
+# categories:
+#   wet:
+#     labels:
+#       "0": Dry
+#       "1": Wet
+#       null: "Unknown"
+#     colors:
+#       "0": "#00CC44"
+#       "1": "#0000FF"
+#       null: "#000000"
+
+# standards:
+#   ph: null
+#   do:
+#   temp:
+#   spc:
+#   tss:

@@ -1,11 +1,14 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    rgeo (3.0.0)
-    rgeo-geojson (2.1.1)
+    multi_json (1.15.0)
+    rgeo (3.0.1)
+    rgeo-geojson (2.2.0)
+      multi_json (~> 1.15)
       rgeo (>= 1.0.0)
 
 PLATFORMS
+  arm64-darwin-23
   ruby
 
 DEPENDENCIES
@@ -13,4 +16,4 @@ DEPENDENCIES
   rgeo-geojson
 
 BUNDLED WITH
-   1.17.2
+   2.5.9
