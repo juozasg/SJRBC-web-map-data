@@ -1,3 +1,226 @@
+# TODO: monitored variables
+
+default:
+  label: Unknown
+  unit: ""
+  format: "%.1f"
+
+# monitored variables
+sedimentReduction:
+  label: Sediment Reduction
+  unit: tons/yr
+phosphorusReduction:
+  label: Phosphorus Reduction
+  unit: lbs/year
+nitrogenReduction:
+  label: Nitrogen Reduction
+  unit: lbs/year
+
+# water flow
+flow:
+  label: Gage Flow
+  unit: ft^3/s
+  format: "%d"
+  scale:
+    min: 0
+    max: 8000
+    d3: interpolateGnBu
+height:
+  label: Gage Height
+  unit: ft
+  scale:
+    min: 0
+    max: 30
+    d3: interpolateBlues
+
+# water physical
+temp:
+  label: Temperature
+  unit: C
+  scale:
+    min: 0
+    max: 35
+    d3: interpolateBuYlRd
+
+spc:
+  label: Specific Conductance
+  unit: uS/cm
+  format: "%d"
+  scale:
+    min: 0
+    max: 2500
+    d3: interpolateReds
+
+# water chemistry
+chlorides:
+  label: Chlorides
+  unit: mg/L
+  standards:
+    max: 250
+  scale:
+    min: 0
+    max: 600
+    d3: interpolateGreens
+
+nitrates:
+  label: Nitrates
+  unit: mg/L
+  format: "%.2f"
+  scale:
+    min: 0
+    max: 15
+    d3: interpolatePurples
+
+phosphorus:
+  label: Phosphorus
+  unit: mg/L
+  format: "%.2f"
+  scale:
+    min: 0
+    max: 0.5
+    d3: interpolateInferno
+
+ph:
+  label: pH
+  format: "%.2f"
+  scale:
+    min: 5.5
+    max: 12.5
+    d3: interpolateTurbo
+
+
+# oxygen
+do:
+  label: Dissolved Oxygen
+  unit: mg/L
+  scale:
+    min: 0
+    max: 100
+    d3: interpolateGreens
+
+doContactTank:
+  label: Dissolved Oxygen - Contact Tank
+  unit: mg/L
+  scale:
+    min: 0
+    max: 100
+    d3: interpolateGreens
+
+doOutfall:
+  label: Dissolved Oxygen - Outfall
+  unit: mg/L
+  scale:
+    min: 0
+    max: 100
+    d3: interpolateGreens
+
+bod:
+  label: Biological Oxygen Demand
+  unit: mg/L
+  scale:
+    min: 0
+    max: 10
+    d3: interpolateBlues
+
+bodPercent:
+  label: Biological Oxygen Demand %
+  unit: "%"
+  scale:
+    min: 0
+    max: 100
+    d3: interpolateInferno
+
+doPerc:
+  label: Dissolved Oxygen % Saturation
+  unit: "%"
+  scale:
+    min: 0
+    max: 200
+    d3: interpolateBlues
+
+# water solids
+tds:
+  label: Total Dissolved Solids
+  unit: mg/L
+  format: "%d"
+  scale:
+    min: 0
+    max: 800
+    d3: interpolatePuRd
+
+tss:
+  label: Total Suspended Solids
+  unit: mg/L
+  standards:
+    max: 30
+  scale:
+    min: 0
+    max: 500
+    d3: interpolateRdPu
+
+turbidity:
+  label: Turbidity
+  unit: NTU
+  format: "%d"
+  scale:
+    min: 0
+    max: 100
+    d3: interpolateInferno
+
+# bacteria/plants
+ecoli:
+  label: E. Coli
+  unit: CFU
+  format: "%d"
+  standards:
+    max: 235
+  scale:
+    min: 0
+    max: 1000
+    d3: interpolateYlOrBr
+
+
+chlorophyll:
+  label: Chlorophyll-a
+  unit: ug/L
+  scale:
+    min: 0
+    max: 200
+    d3: interpolateGreens
+
+# fish/invertebrates
+fishIbi:
+  label: Fish IBI
+  format: "%d"
+  scale:
+    min: 0
+    max: 60
+    d3: interpolateRdYlBu
+
+invertMacro:
+  label: Invertebrate Macro Score
+  format: "%d"
+  scale:
+    min: -10
+    max: 60
+    d3: interpolateRdYlBu
+
+invertIndiana:
+  label: Invertebrate Indiana Score
+  format: "%d"
+  scale:
+    min: 0
+    max: 60
+    d3: interpolateRdYlBu
+
+invertMichigan:
+  label: Invertebrate Michigan Score
+  format: "%d"
+  scale:
+    min: -10
+    max: 10
+    d3: interpolateRdYlBu
+
 invertNarrative:
   label: Invertebrate Health
   units: ""
@@ -26,96 +249,3 @@ invertNarrative:
       label: Unknown
       color: "#777777"
 
-# labels:
-#   temp: Temperature
-#   flow: Gage Flow
-#   height: Gage Height
-#   wetWeatherOrBaseflow: Ground is Wet
-
-#   do: Dissolved Oxygen
-#   doContactTank: Dissolved Oxygen - Contact Tank
-#   doOutfall: Dissolved Oxygen - Outfall
-#   bod: Biological Oxygen Demand
-#   bodPercent: Biological Oxygen Demand %
-#   doPerc: Dissolved Oxygen % Saturation
-
-#   ecoli: E. Coli
-#   fishIbi: Fish IBI
-#   invertMacro: Invertebrate Macro Score
-#   invertIndiana: Invertebrate Indiana Score
-#   invertMichigan: Invertebrate Michigan Score
-#   chlorophyll: Chlorophyll-a
-
-#   chlorides: Chlorides
-#   nitrates: Nitrates
-#   phosphorus: Phosphorus
-#   ph: pH
-
-#   spc: Specific Conductance
-#   tds: Total Dissolved Solids
-#   tss: Total Suspended Solids
-#   turbidity: Turbidity
-
-#   sedimentReduction: Sediment Reduction
-#   phosphorusReduction: Phosphorus Reduction
-#   nitrogenReduction: Nitrogen Reduction
-
-# units:
-#   bod: mg/L
-#   bodPercent: "%"
-#   chlorides: mg/L
-#   datainfo: days ago
-#   do: mg/L
-#   doContactTank: mg/L
-#   doOutfall: mg/L
-#   ecoli: CFU
-#   flow: ft^3/s
-#   height: ft
-#   nitrates: mg/L
-#   phosphorus: mg/L
-#   spc: uS/cm
-#   tds: mg/L
-#   temp: C
-#   tss: mg/L
-#   turbidity: NTU
-#   doPerc: "%"
-#   chlorophyll: ug L
-#   wet: Ground Condition is Wet
-#   sedimentReduction: tons/yr
-#   phosphorusReduction: lbs./year
-#   nitrogenReduction: lbs./year
-
-# numberFormat:
-#   ecoli: "%d"
-#   flow: "%d"
-#   nitrates: "%.2f"
-#   ph: "%.2f"
-#   phosphorus: "%.2f"
-#   spc: "%d"
-#   tds: "%d"
-#   turbidity: "%d"
-#   fishIbi: "%d"
-#   invertMacro: "%d"
-#   invertIndiana: "%d"
-#   invertMichigan: "%d"
-#   doPerc: "%.1f"
-#   chlorophyll: "%.1f"
-#   wetWeatherOrBaseflow: "%d"
-
-# categories:
-#   wet:
-#     labels:
-#       "0": Dry
-#       "1": Wet
-#       null: "Unknown"
-#     colors:
-#       "0": "#00CC44"
-#       "1": "#0000FF"
-#       null: "#000000"
-
-# standards:
-#   ph: null
-#   do:
-#   temp:
-#   spc:
-#   tss:
