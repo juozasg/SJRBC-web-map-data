@@ -66,9 +66,9 @@ nitrates:
   label: Nitrates
   unit: mg/L
    standards:
-    max_surface_water: 1.5
-    max_drinking_water: 10.0
-  format: "%.2f"
+    max: 1.5
+    maxStrict: 10.0
+  format: "%.1f"
   scale:
     min: 0
     max: 15
@@ -89,7 +89,7 @@ ph:
   label: pH
   format: "%.2f"
   scale:
-    min: 5.5
+    min: 6.5
     max: 12.5
     d3: interpolateTurbo
 
