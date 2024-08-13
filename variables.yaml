@@ -65,6 +65,9 @@ chlorides:
 nitrates:
   label: Nitrates
   unit: mg/L
+   standards:
+    max_surface_water: 1.5
+    max_drinking_water: 10.0
   format: "%.2f"
   scale:
     min: 0
@@ -74,6 +77,8 @@ nitrates:
 phosphorus:
   label: Phosphorus
   unit: mg/L
+   standards:
+    max: 0.005
   format: "%.2f"
   scale:
     min: 0
@@ -93,6 +98,9 @@ ph:
 do:
   label: Dissolved Oxygen
   unit: mg/L
+   standards:
+    max: 12
+    min: 4
   scale:
     min: 0
     max: 100
