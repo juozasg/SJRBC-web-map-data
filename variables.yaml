@@ -7,35 +7,7 @@ default:
   scale:
     d3: interpolatePlasma
 
-# monitored variables
-sedimentReduction:
-  label: Sediment Reduction
-  unit: tons/yr
-phosphorusReduction:
-  label: Phosphorus Reduction
-  unit: lbs/year
-nitrogenReduction:
-  label: Nitrogen Reduction
-  unit: lbs/year
-
-# water flow
-flow:
-  label: Gage Flow
-  unit: ft^3/s
-  format: "%d"
-  scale:
-    min: 0
-    max: 8000
-    d3: interpolateGnBu
-height:
-  label: Gage Height
-  unit: ft
-  scale:
-    min: 0
-    max: 30
-    d3: interpolateBlues
-
-# water physical
+# start with familiar temp
 temp:
   label: Temperature
   unit: C
@@ -46,6 +18,24 @@ temp:
       reverse:
         interpolateRdYlBu
 
+# water flow
+flow:
+  label: Gage Flow
+  unit: ft^3/s
+  format: "%d"
+  scale:
+    min: 0
+    max: 8000
+    d3: interpolateGnBu
+# height:
+#   label: Gage Height
+#   unit: ft
+#   scale:
+#     min: 0
+#     max: 30
+#     d3: interpolateBlues
+
+# water physical
 spc:
   label: Specific Conductance
   unit: uS/cm
@@ -76,7 +66,7 @@ nitrates:
   scale:
     min: 0
     max: 15
-    d3: interpolatePurples
+    d3: interpolatePlasma
 
 phosphorus:
   label: Phosphorus
@@ -93,21 +83,20 @@ ph:
   label: pH
   format: "%.2f"
   scale:
-    min: 6.5
+    min: 6
     max: 12.5
     d3: interpolateTurbo
-
 
 # oxygen
 do:
   label: Dissolved Oxygen
   unit: mg/L
   standards:
-    max: 12
     min: 4
+    max: 12
   scale:
     min: 0
-    max: 100
+    max: 20
     d3: interpolateGreens
 
 doContactTank:
@@ -115,7 +104,7 @@ doContactTank:
   unit: mg/L
   scale:
     min: 0
-    max: 100
+    max: 15
     d3: interpolateGreens
 
 doOutfall:
@@ -123,7 +112,7 @@ doOutfall:
   unit: mg/L
   scale:
     min: 0
-    max: 100
+    max: 30
     d3: interpolateGreens
 
 bod:
@@ -139,7 +128,7 @@ bodPercent:
   unit: "%"
   scale:
     min: 0
-    max: 100
+    max: 50
     d3: interpolateInferno
 
 doPerc:
@@ -176,8 +165,10 @@ turbidity:
   format: "%d"
   scale:
     min: 0
-    max: 100
-    d3: interpolateInferno
+    max: 25
+    d3:
+      reverse:
+        interpolateInferno
 
 # bacteria/plants
 ecoli:
@@ -190,7 +181,6 @@ ecoli:
     min: 0
     max: 1000
     d3: interpolateYlOrBr
-
 
 chlorophyll:
   label: Chlorophyll-a
@@ -261,3 +251,13 @@ invertNarrative:
       label: Unknown
       color: "#777777"
 
+# monitored variables
+sedimentReduction:
+  label: Sediment Reduction
+  unit: tons/yr
+phosphorusReduction:
+  label: Phosphorus Reduction
+  unit: lbs/year
+nitrogenReduction:
+  label: Nitrogen Reduction
+  unit: lbs/year
