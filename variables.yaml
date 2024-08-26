@@ -4,6 +4,8 @@ default:
   label: Unknown
   unit: ""
   format: "%.1f"
+  scale:
+    d3: interpolatePlasma
 
 # monitored variables
 sedimentReduction:
@@ -40,7 +42,9 @@ temp:
   scale:
     min: 0
     max: 35
-    d3: interpolateBuYlRd
+    d3:
+      reverse:
+        interpolateRdYlBu
 
 spc:
   label: Specific Conductance
