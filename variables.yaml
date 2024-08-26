@@ -229,7 +229,6 @@ invertNarrative:
   categories:
     Poor:
       label: Poor
-      color: "#FF0000"
     Low_Fair:
       label: Low Fair
     Fair:
@@ -246,10 +245,9 @@ invertNarrative:
       label: Excellent
     Exceptional:
       label: Exceptional
-      color: "#00FF00"
-    default:
-      label: Unknown
-      color: "#777777"
+  scale:
+    d3: interpolateRdYlGn
+
 
 # monitored variables
 sedimentReduction:
