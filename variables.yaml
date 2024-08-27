@@ -2,7 +2,7 @@
 
 default:
   label: Unknown
-  unit: ""
+  units: ""
   format: "%.1f"
   scale:
     d3: interpolatePlasma
@@ -10,7 +10,7 @@ default:
 # start with familiar temp
 temp:
   label: Temperature
-  unit: C
+  units: C
   scale:
     min: 0
     max: 35
@@ -21,7 +21,7 @@ temp:
 # water flow
 flow:
   label: Gage Flow
-  unit: ft^3/s
+  units: ft^3/s
   format: "%d"
   scale:
     min: 0
@@ -29,7 +29,7 @@ flow:
     d3: interpolateGnBu
 # height:
 #   label: Gage Height
-#   unit: ft
+#   units: ft
 #   scale:
 #     min: 0
 #     max: 30
@@ -38,7 +38,7 @@ flow:
 # water physical
 spc:
   label: Specific Conductance
-  unit: uS/cm
+  units: uS/cm
   format: "%d"
   scale:
     min: 0
@@ -48,7 +48,7 @@ spc:
 # water chemistry
 chlorides:
   label: Chlorides
-  unit: mg/L
+  units: mg/L
   standards:
     max: 250
   scale:
@@ -58,7 +58,7 @@ chlorides:
 
 nitrates:
   label: Nitrates
-  unit: mg/L
+  units: mg/L
   standards:
     max: 1.5
     maxStrict: 10.0
@@ -70,7 +70,7 @@ nitrates:
 
 phosphorus:
   label: Phosphorus
-  unit: mg/L
+  units: mg/L
   standards:
     max: 0.005
   format: "%.2f"
@@ -90,7 +90,7 @@ ph:
 # oxygen
 do:
   label: Dissolved Oxygen
-  unit: mg/L
+  units: mg/L
   standards:
     min: 4
     max: 12
@@ -101,7 +101,7 @@ do:
 
 doContactTank:
   label: Dissolved Oxygen - Contact Tank
-  unit: mg/L
+  units: mg/L
   scale:
     min: 0
     max: 15
@@ -109,7 +109,7 @@ doContactTank:
 
 doOutfall:
   label: Dissolved Oxygen - Outfall
-  unit: mg/L
+  units: mg/L
   scale:
     min: 0
     max: 30
@@ -117,7 +117,7 @@ doOutfall:
 
 bod:
   label: Biological Oxygen Demand
-  unit: mg/L
+  units: mg/L
   scale:
     min: 0
     max: 10
@@ -125,7 +125,7 @@ bod:
 
 bodPercent:
   label: Biological Oxygen Demand %
-  unit: "%"
+  units: "%"
   scale:
     min: 0
     max: 50
@@ -133,7 +133,7 @@ bodPercent:
 
 doPerc:
   label: Dissolved Oxygen % Saturation
-  unit: "%"
+  units: "%"
   scale:
     min: 0
     max: 200
@@ -142,7 +142,7 @@ doPerc:
 # water solids
 tds:
   label: Total Dissolved Solids
-  unit: mg/L
+  units: mg/L
   format: "%d"
   scale:
     min: 0
@@ -151,7 +151,7 @@ tds:
 
 tss:
   label: Total Suspended Solids
-  unit: mg/L
+  units: mg/L
   standards:
     max: 30
   scale:
@@ -161,7 +161,7 @@ tss:
 
 turbidity:
   label: Turbidity
-  unit: NTU
+  units: NTU
   format: "%d"
   scale:
     min: 0
@@ -173,7 +173,7 @@ turbidity:
 # bacteria/plants
 ecoli:
   label: E. Coli
-  unit: CFU
+  units: CFU
   format: "%d"
   standards:
     max: 235
@@ -184,7 +184,7 @@ ecoli:
 
 chlorophyll:
   label: Chlorophyll-a
-  unit: ug/L
+  units: ug/L
   scale:
     min: 0
     max: 200
@@ -229,22 +229,31 @@ invertNarrative:
   categories:
     Poor:
       label: Poor
+      legend: P
     Low_Fair:
       label: Low Fair
+      legend: LF
     Fair:
       label: Fair
+      legend: F
     Acceptable:
       label: Acceptable
+      legend: A
     Marg_Good:
       label: Marginally Good
+      legend: MG
     Good:
       label: Good
+      legend: G
     Very_Good:
       label: Very Good
+      legend: VG
     Excellent:
       label: Excellent
+      legend: E
     Exceptional:
       label: Exceptional
+      legend: E+
   scale:
     d3: interpolateRdYlGn
 
@@ -252,10 +261,10 @@ invertNarrative:
 # monitored variables
 sedimentReduction:
   label: Sediment Reduction
-  unit: tons/yr
+  units: tons/yr
 phosphorusReduction:
   label: Phosphorus Reduction
-  unit: lbs/year
+  units: lbs/year
 nitrogenReduction:
   label: Nitrogen Reduction
-  unit: lbs/year
+  units: lbs/year
