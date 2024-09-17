@@ -1,0 +1,1 @@
+A ranking of overall invertebrate health. Organisms such as snails, mussels, worms, and aquatic insects tell a story of how healthy a river is based on the number and types of species that vary in their tolerance to pollution.
