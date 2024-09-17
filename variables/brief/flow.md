@@ -1,0 +1,1 @@
+Steamflow (or "discharge") refer to the amount of water flowing in a river. The main influence on streamflow is precipitation runoff in the watershed. Rainfall causes rivers to rise, and a river can rise if it rains very far up in the watershed. Water that falls in a watershed will eventually drain by the outflow point.
