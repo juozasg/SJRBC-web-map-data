@@ -1,0 +1,1 @@
+Outfall Dissolved Oxygen is the dissolved oxygen amount measured in the water released by water treatment facilities

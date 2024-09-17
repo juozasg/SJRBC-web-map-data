@@ -1,0 +1,1 @@
+Temperature affects water chemistry and the functions of aquatic organisms. Increased water temperature can result in decreased dissolved oxygen (DO), greater solubility of toxic substances and algal blooms.

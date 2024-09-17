@@ -1,0 +1,1 @@
+Oxygen Saturation Percent is a ratio of the concentration of dissolved oxygen (O2), to the maximum amount of oxygen that can dissolve in that water body, at given temperature.
