@@ -1,0 +1,1 @@
+Turbidity is the measure of relative clarity of a liquid. It is an optical characteristic of water and is a measurement of the amount of light scattered by the water. Material that causes water to be turbid include clay, silt, very tiny inorganic and organisms.
