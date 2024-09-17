@@ -1,0 +1,1 @@
+Total dissolved solids (TDS) are the amount of organic and inorganic materials, such as metals, minerals, salts, and ions, dissolved in a particular volume of water. TDS are essentially a measure of anything dissolved in water.
