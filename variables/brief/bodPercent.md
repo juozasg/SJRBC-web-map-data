@@ -1,0 +1,1 @@
+The proportion of dissolved oxygen that is consumed by microorganisms in a water sample. Higher levels can indicate higher levels of organic matter and more decomposition thus leading to oxygen depletion to the detriment of fish and other aquatic life.
