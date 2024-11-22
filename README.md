@@ -11,7 +11,14 @@ The data is formatted to work with the [St. Joe River Basin Commission Web Map](
 
 Each site must have a unique `siteId` field in the format `dataset-number`. For example: `ecoli-1` or `fish-20`
 
-The dataset names in `sites.csv` refer to files containing the data for the sites. So for `ecoli-1` the data is stored in `ecoli.csv`. 
+The dataset names in `sites.csv` refer to files containing the data for the sites. So for `ecoli-1` the data is stored in `ecoli.csv`.
+
+
+
+### Indexes
+
+Each site belongs to multiple regions/areas (polygons): HUCs, state and a county. `indexes` folder contains this geo-index. Whenever new sites are added the indexes must be rebuild with `build-indexes.rb`.
+
 
 ### dataset CSV files
 
