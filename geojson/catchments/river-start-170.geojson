@@ -1,1 +1,0 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"DN":1},"geometry":{"type":"Polygon","coordinates":[[[-86.12757,42.17131],[-86.12783,42.1705],[-86.12711,42.17023],[-86.12734,42.17041],[-86.12733,42.17131],[-86.12757,42.17131]]]}}],"name":"river-start-170","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}}}

@@ -1,1 +1,0 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"DN":1},"geometry":{"type":"Polygon","coordinates":[[[-85.9652,41.74728],[-85.9652,41.7471],[-85.96497,41.74701],[-85.96496,41.74719],[-85.9652,41.74728]]]}}],"name":"site-elkhart-37","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}}}
