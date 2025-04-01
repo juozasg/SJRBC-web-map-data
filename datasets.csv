@@ -1,0 +1,10 @@
+name,datasetId,id,description
+USGS,usgs,0,
+ecoli,ecoli,10000,
+elkhart,elkhart,20000,
+fish,fish,30000,
+invert,invert,40000,
+lagrange,lagrange,50000,
+sjrbc,sjrbc,60000,
+steuben,steuben,70000,
+tolthawk,tolthawk,90000,
