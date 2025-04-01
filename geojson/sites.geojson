@@ -708,10 +708,10 @@
 { "type": "Feature", "properties": { "siteId": "tolthawk-393", "name": "NB1 - North Branch Elkhart River - Topeka (W800S)" }, "geometry": { "type": "Point", "coordinates": [ -85.46037, 41.52551 ] } },
 { "type": "Feature", "properties": { "siteId": "tolthawk-397", "name": "NB2 - North Branch Elkhart River - Kendallville (N600E)" }, "geometry": { "type": "Point", "coordinates": [ -85.3086, 41.46213 ] } },
 { "type": "Feature", "properties": { "siteId": "tolthawk-395", "name": "NB3 - North Branch Elkhart River - Milford (IN-3)" }, "geometry": { "type": "Point", "coordinates": [ -85.27367, 41.51511 ] } },
-{ "type": "Feature", "properties": { "siteId": "tolkhawk-398", "name": "Fawn River (FR1) - Nevada Mills (N500W)" }, "geometry": { "type": "Point", "coordinates": [ -85.0823, 41.72544 ] } },
-{ "type": "Feature", "properties": { "siteId": "tolkhawk-396", "name": "Phillips Ditch Station 1 (U.S. 20)" }, "geometry": { "type": "Point", "coordinates": [ -86.25856, 41.62503 ] } },
-{ "type": "Feature", "properties": { "siteId": "tolkhawk-394", "name": "Phillips Ditch Station 2 (Kern Road)" }, "geometry": { "type": "Point", "coordinates": [ -86.25335, 41.60815 ] } },
-{ "type": "Feature", "properties": { "siteId": "tolkhawk-392", "name": "Baugo Creek CR 1" }, "geometry": { "type": "Point", "coordinates": [ -86.04213, 41.64081 ] } },
-{ "type": "Feature", "properties": { "siteId": "tolkhawk-399", "name": "Little Elkhart River at US-120 (7805)" }, "geometry": { "type": "Point", "coordinates": [ -85.79381, 41.72512 ] } }
+{ "type": "Feature", "properties": { "siteId": "tolthawk-398", "name": "Fawn River (FR1) - Nevada Mills (N500W)" }, "geometry": { "type": "Point", "coordinates": [ -85.0823, 41.72544 ] } },
+{ "type": "Feature", "properties": { "siteId": "tolthawk-396", "name": "Phillips Ditch Station 1 (U.S. 20)" }, "geometry": { "type": "Point", "coordinates": [ -86.25856, 41.62503 ] } },
+{ "type": "Feature", "properties": { "siteId": "tolthawk-394", "name": "Phillips Ditch Station 2 (Kern Road)" }, "geometry": { "type": "Point", "coordinates": [ -86.25335, 41.60815 ] } },
+{ "type": "Feature", "properties": { "siteId": "tolthawk-392", "name": "Baugo Creek CR 1" }, "geometry": { "type": "Point", "coordinates": [ -86.04213, 41.64081 ] } },
+{ "type": "Feature", "properties": { "siteId": "tolthawk-399", "name": "Little Elkhart River at US-120 (7805)" }, "geometry": { "type": "Point", "coordinates": [ -85.79381, 41.72512 ] } }
 ]
 }
