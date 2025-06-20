@@ -6,6 +6,8 @@ import json
 import csv
 import os
 from collections import defaultdict
+# import local python file
+import dates_with_records as dwr
 
 
 def varname(variable_name):
@@ -27,7 +29,7 @@ endDate = datetime.now().strftime('%Y-%m-%d')
 
 ids = ['04096405','04096515','04097500','040975299','04097540','04099000','04100500','04101000','04101500','04101800','04102500','04099750']
 ids = ','.join(ids)
-ids = '04101500'  # For testing with a single site
+# ids = '04101500'  # For testing with a single site
 
 url = f'https://waterservices.usgs.gov/nwis/dv/?format=json&sites={ids}&statCd=00003&siteStatus=all&startDT=1981-01-01&endDT={endDate}'
 print(f"URL: {url}")
@@ -69,6 +71,13 @@ if response.status_code == 200:
     # sort each site_id's dates
     for site_id in site_data:
         site_data[site_id] = dict(sorted(site_data[site_id].items()))
+
+    unique_dates = dwr.get_unique_dates()
+    # delete dates that do not have records
+    for site_id in list(site_data.keys()):
+        for date in list(site_data[site_id].keys()):
+            if date not in unique_dates:
+                del site_data[site_id][date]
     # Open CSV file for writing
     with open('datasets/usgs.csv', 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile)
