@@ -18,7 +18,7 @@ temp:
       reverse:
         interpolateRdYlBu
 
-# water flow
+# water flow shown in variables selector
 flow:
   label: Streamflow
   units: ft^3/s
@@ -27,13 +27,38 @@ flow:
     min: 0
     max: 8000
     d3: interpolateGnBu
-# height:
-#   label: Gage Height
-#   units: ft
-#   scale:
-#     min: 0
-#     max: 30
-#     d3: interpolateBlues
+
+# REALTIME water variables are only shown with water overlay selector for usgs and tolthawk sites
+rtflow:
+  realtime: true
+  label: Streamflow
+  units: ft^3/s
+  format: "%d"
+  scale:
+    min: 0
+    max: 8000
+    d3: interpolateGnBu
+
+rtexceedance:
+  realtime: true
+  label: Exceedance
+  units: '%'
+  format: "%d"
+  scale:
+    min: -500
+    max: 500
+    custom: 'interpolateExceedance'
+    # bipolar with opposite colors for positive and negative values
+
+
+rtheight:
+  realtime: true
+  label: Gage Height
+  units: ft
+  scale:
+    min: 0
+    max: 30
+    d3: interpolateBlues
 
 # water physical
 spc:
