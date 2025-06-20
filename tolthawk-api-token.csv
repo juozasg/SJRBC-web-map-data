@@ -1,0 +1,54 @@
+# read username and password from tolkthawk-login file two lines
+
+import requests
+import json
+
+def read_credentials():
+    with open('tolthawk-login', 'r') as f:
+        lines = f.readlines()
+        if len(lines) >= 2:
+            email = lines[0].strip()
+            password = lines[1].strip()
+            return email, password
+
+def get_api_token(email, password, expires_days=30):
+    url = "https://sensors.tolthawk.com/api/token"
+
+    payload = {
+        "Email": email,
+        "Password": password,
+        "Expires": expires_days
+    }
+
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status()  # Raise exception for 4XX/5XX responses
+
+        # Parse response JSON
+        data = response.json()
+        token = data.get('token')
+
+        if token:
+            print(f"Successfully obtained API token (valid for {expires_days} days)")
+            return token
+        else:
+            print("Error: Token not found in response")
+            return None
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error obtaining API token: {e}")
+        return None
+
+# Get credentials
+email, password = read_credentials()
+
+# Get API token
+if email and password:
+    api_token = get_api_token(email, password, 9999)
+    if api_token:
+        print("Token obtained successfully", api_token)
+        write = open('tolthawk-token', 'w')
+        write.write(api_token)
+        write.close()
+else:
+    print("Failed to read credentials")
