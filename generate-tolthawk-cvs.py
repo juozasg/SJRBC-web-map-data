@@ -1,11 +1,13 @@
 import requests
 from datetime import datetime
+import csv
+
 
 # Region ID for sensors
 regionId = 49
-startDate = '20150101'
-startDate = '20250620'
+startDate = '20220718'
 endDate = datetime.now().strftime('%Y%m%d')
+# endDate = '20220722'
 dateRange = f"{startDate}0000-{endDate}2359"
 
 
@@ -54,19 +56,55 @@ def get_water_levels(sensor_id):
 # TODO: collect all readings for each day and write mean water level to tolthawk.csv
 
 sensor_status = get_sensor_status(regionId)
-print(sensor_status)
-exit(0)
+sites: dict[int, dict] = dict()
+
 for sensor in sensor_status:
-    print(sensor)
-    # sensor_id = sensor['Lid']
+    sensor_id = sensor['Lid']
+    created_on = sensor['CreatedOn']
+    # print(sensor_id, sen)
+    # print(sensor)
     # print(f"Sensor ID: {sensor_id}")
     readings = get_water_levels(sensor_id)
-    print(f"Water levels for {sensor_id}:")
+
+    # datetime list of reeadings or average reading per dat
+    sites[sensor_id]: dict[str, list[float] | float] = dict()
     for reading in readings:
-        datetime = reading['DT']
+        date_time = reading['DT'].split('T')[0]
         waterlevel = reading['WLV']
-        print(reading)
-        exit(0)
+        flow = height_to_streamflow(date_time, waterlevel)
+
+        if date_time not in sites[sensor_id]:
+            sites[sensor_id][date_time] = []
+
+        sites[sensor_id][date_time].append(flow)
+
+
+    # Calculate mean flow for each date
+    for date, flows in sites[sensor_id].items():
+        mean_flow = sum(flows) / len(flows)
+        sites[sensor_id][date] = mean_flow
+
+    print(len(readings), "readings", len(sites[sensor_id]), "days", "| mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
+    # sort dates
+    sites[sensor_id] = dict(sorted(sites[sensor_id].items()))
+
+with open('datasets/tolthawk.csv', 'w', newline='') as csvfile:
+    csv_writer = csv.writer(csvfile)
+
+    # Write header
+    csv_writer.writerow(['siteId', 'date', 'flow'])
+    # Write data rows
+    for sensor_id, dates in sites.items():
+        for date, flow in dates.items():
+            csv_writer.writerow([f'tolthawk-{sensor_id}', date, flow])
+
+    print(f"Data written to datasets/tolthawk.csv for {len(sites)} sensors")
+
+
+
+    # print(sites)
+    # print("total days:", len(sites[sensor_id]))
+    # exit(0)
 
 
     # print(sensor_status)

@@ -65,7 +65,7 @@ if response.status_code == 200:
 
             # Store the value in our nested dictionary
             site_data[site_id][date_time][variable_type] = value
-            print(f"Collected: {site_id}: {variable_type} {date_time} {value}")
+            # print(f"Collected: {site_id}: {variable_type} {date_time} {value}")
 
 
     # sort each site_id's dates

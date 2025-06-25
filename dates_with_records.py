@@ -5,7 +5,7 @@
 # sort and print all unique dates
 import os
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 from glob import glob
 from collections import defaultdict
 
@@ -59,9 +59,19 @@ def get_unique_dates():
 
 
     # for each year from 1989 add 04-01 and 10-01 to the unique dates
-    for year in range(1989, datetime.now().year + 1):
+    for year in range(1989, datetime.now().year):
         unique_dates.add(f"{year}-04-01")
         unique_dates.add(f"{year}-10-01")
+
+    # add every day from 2022-07-18 to 2025-01-01
+    start_date = datetime(2022, 7, 18)
+    end_date = datetime.now()
+
+    # every day from start_date to end_date
+    current_date = start_date
+    while current_date <= end_date:
+        unique_dates.add(current_date.strftime('%Y-%m-%d'))
+        current_date += timedelta(days=1)
 
     # Sort the unique dates
     sorted_dates = sorted(unique_dates)
@@ -69,10 +79,12 @@ def get_unique_dates():
     return sorted_dates
 
 
+if __name__ == "__main__":
+    sorted_dates = get_unique_dates()
 
-# # Print the sorted unique dates
-# print("\nUnique dates in YYYY-MM-DD format:")
-# for date in sorted_dates:
-#     print(date)
+    # Print the sorted unique dates
+    print("\nUnique dates in YYYY-MM-DD format:")
+    for date in sorted_dates:
+        print(date)
 
-# print(f"\nTotal unique dates: {len(sorted_dates)}")
+    print(f"\nTotal unique dates: {len(sorted_dates)}")
