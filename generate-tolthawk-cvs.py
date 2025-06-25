@@ -8,6 +8,13 @@ startDate = '20250620'
 endDate = datetime.now().strftime('%Y%m%d')
 dateRange = f"{startDate}0000-{endDate}2359"
 
+
+def height_to_streamflow(date, height):
+    # Convert water height to streamflow (cufs) using a simple linear model
+    # This is a placeholder function; replace with actual conversion logic
+    return height * 10  # Example conversion factor
+
+
 def read_token():
     with open('tolthawk-token', 'r') as f:
         token = f.read().strip()
@@ -47,16 +54,19 @@ def get_water_levels(sensor_id):
 # TODO: collect all readings for each day and write mean water level to tolthawk.csv
 
 sensor_status = get_sensor_status(regionId)
+print(sensor_status)
+exit(0)
 for sensor in sensor_status:
-    sensor_id = sensor['Lid']
+    print(sensor)
+    # sensor_id = sensor['Lid']
     # print(f"Sensor ID: {sensor_id}")
     readings = get_water_levels(sensor_id)
     print(f"Water levels for {sensor_id}:")
     for reading in readings:
         datetime = reading['DT']
         waterlevel = reading['WLV']
-        # print(reading)
-    exit(0)
+        print(reading)
+        exit(0)
 
 
     # print(sensor_status)
