@@ -2,3 +2,4 @@ tolthawk-login
 tolthawk-token
 __pycache__
 .idea
+.venv
