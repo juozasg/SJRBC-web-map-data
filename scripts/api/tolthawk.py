@@ -1,11 +1,9 @@
+import os
 from datetime import datetime
 
 import requests
 
-from scripts.api.common import Timeseries, TimeseriesRecord
-
-
-ids = [397, 395, 398, 396, 394, 392, 399]
+from .common import Timeseries, TimeseriesRecord
 
 
 def height_to_streamflow(sensor_id, waterlevel):
@@ -13,7 +11,8 @@ def height_to_streamflow(sensor_id, waterlevel):
 
 
 def read_token():
-    with open('tolthawk-token', 'r') as f:
+    file_dir = os.path.dirname(__file__)
+    with open(file_dir + '/tolthawk-token', 'r') as f:
         token = f.read().strip()
         return token
 

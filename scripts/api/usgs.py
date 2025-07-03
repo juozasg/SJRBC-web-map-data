@@ -4,7 +4,7 @@ import pytz
 
 import requests
 
-from scripts.api.common import Timeseries, TimeseriesRecord
+from .common import Timeseries, TimeseriesRecord
 
 def varname(name: str):
     # find substring in variable_name and return a more readable name
