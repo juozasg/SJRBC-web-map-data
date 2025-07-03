@@ -49,7 +49,7 @@ def sitesIdsInFeature(feature):
 def indexFeatureCollection(regionType: str):
     featureSiteIds: dict[int, list[int]] = {}
 
-    with open(f"geojson/{regionType}.geojson", 'r') as f:
+    with open(f"../geojson/{regionType}.geojson", 'r') as f:
         data = json.load(f)
         num = len(data['features'])
         n = 1

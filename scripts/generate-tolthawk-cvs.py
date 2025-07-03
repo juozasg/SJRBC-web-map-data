@@ -60,10 +60,6 @@ sites: dict[int, dict] = dict()
 
 for sensor in sensor_status:
     sensor_id = sensor['Lid']
-    # skip Baugo Creek at CR1 for now
-    if int(sensor_id) == 393:
-        print("skipping: ", sensor)
-        continue
     created_on = sensor['CreatedOn']
     # print(sensor_id, sen)
     # print(sensor)
@@ -73,34 +69,36 @@ for sensor in sensor_status:
     # datetime list of reeadings or average reading per dat
     sites[sensor_id]: dict[str, list[float] | float] = dict()
     for reading in readings:
-        date_time = reading['DT']
+        date_time = reading['DT'].split('T')[0]
         waterlevel = reading['WLV']
         flow = height_to_streamflow(date_time, waterlevel)
 
+        if date_time not in sites[sensor_id]:
+            sites[sensor_id][date_time] = []
 
-        sites[sensor_id][date_time] = flow
+        sites[sensor_id][date_time].append(flow)
 
 
     # Calculate mean flow for each date
-    # for date, flows in sites[sensor_id].items():
-    #     mean_flow = sum(flows) / len(flows)
-    #     sites[sensor_id][date] = mean_flow
+    for date, flows in sites[sensor_id].items():
+        mean_flow = sum(flows) / len(flows)
+        sites[sensor_id][date] = mean_flow
 
-    print(len(readings), "readings", )
+    print(len(readings), "readings", len(sites[sensor_id]), "days", "| mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
     # sort dates
     sites[sensor_id] = dict(sorted(sites[sensor_id].items()))
 
-with open('realtime/tolthawk.csv', 'w', newline='') as csvfile:
+with open('../datasets/tolthawk.csv', 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile)
 
     # Write header
-    csv_writer.writerow(['siteId', 'datetime', 'flow'])
+    csv_writer.writerow(['siteId', 'date', 'flow'])
     # Write data rows
     for sensor_id, dates in sites.items():
         for date, flow in dates.items():
             csv_writer.writerow([f'tolthawk-{sensor_id}', date, flow])
 
-    print(f"Data written to realtime/tolthawk.csv for {len(sites)} sensors")
+    print(f"Data written to datasets/tolthawk.csv for {len(sites)} sensors")
 
 
 

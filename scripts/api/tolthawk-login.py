@@ -73,7 +73,7 @@ def save_token(token):
         print(f"Error saving token: {e}")
         sys.exit(1)
 
-def main():
+def tolthawk_login():
     """Main function."""
     print("Reading credentials...")
     email, password = read_credentials()
@@ -88,4 +88,4 @@ def main():
     print("Done!")
 
 if __name__ == "__main__":
-    main()
+    tolthawk_login()
