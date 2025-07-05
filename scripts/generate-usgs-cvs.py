@@ -8,6 +8,7 @@ import os
 from collections import defaultdict
 # import local python file
 import dates_with_records as dwr
+from api.usgs import usgs_ids
 
 
 def varname(variable_name):
@@ -27,8 +28,7 @@ def varname(variable_name):
 endDate = datetime.now().strftime('%Y-%m-%d')
 # endDate = '2011-05-01'  # For testing, use a fixed date
 
-ids = ['04096405','04096515','04097500','040975299','04097540','04099000','04100500','04101000','04101500','04101800','04102500','04099750']
-ids = ','.join(ids)
+ids = ','.join(usgs_ids)
 # ids = '04101500'  # For testing with a single site
 
 url = f'https://waterservices.usgs.gov/nwis/dv/?format=json&sites={ids}&statCd=00003&siteStatus=all&startDT=1981-01-01&endDT={endDate}'

@@ -1,77 +1,39 @@
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 import csv
 
-
-# Region ID for sensors
-regionId = 49
-startDate = '20220718'
-endDate = datetime.now().strftime('%Y%m%d')
-# endDate = '20220722'
-dateRange = f"{startDate}0000-{endDate}2359"
-
-
-def height_to_streamflow(date, height):
-    # Convert water height to streamflow (cufs) using a simple linear model
-    # This is a placeholder function; replace with actual conversion logic
-    return height * 10  # Example conversion factor
-
-
-def read_token():
-    with open('tolthawk-token', 'r') as f:
-        token = f.read().strip()
-        return token
-
-headers = {
-    "Content-Type": "application/json",
-    "Token": read_token()
-}
+from api.common import Timeseries
+from api.tolthawk import tolthawk_valid_sensors, fetch_tolthawk_iv
+import pytz
 
 
 
-def get_sensor_status(region_id):
-    url = f"https://sensors.tolthawk.com/api/mobile/LocationsStatus/{region_id}"
+start_dt =  datetime(2022, 7, 19, 0, 0, tzinfo=pytz.utc)
+now_dt = datetime.now(timezone.utc)
 
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
 
-    # Parse response JSON
-    data = response.json()
-    print(f"Successfully fetched data for {len(data)} sensors")
-    return data
+start_dt =  datetime(2025, 7, 4, 0, 0, tzinfo=pytz.utc)
+# now_dt =  datetime(2025, 7, 20, 0, 0, tzinfo=pytz.utc)
 
-def get_water_levels(sensor_id):
-    url = f"https://sensors.tolthawk.com/api/mobile/WaterLevels/{sensor_id}/{dateRange}"
-    print(f"Fetching tolthawk-{sensor_id} from {url}")
 
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
 
-    # Parse response JSON
-    data = response.json()
-    print(f"Successfully fetched readings for sensor {sensor_id}")
-    return data
 
 # Main execution
 # TODO: collect all readings for each day and write mean water level to tolthawk.csv
 
-sensor_status = get_sensor_status(regionId)
 sites: dict[int, dict] = dict()
 
-for sensor in sensor_status:
-    sensor_id = sensor['Lid']
-    created_on = sensor['CreatedOn']
-    # print(sensor_id, sen)
-    # print(sensor)
-    # print(f"Sensor ID: {sensor_id}")
-    readings = get_water_levels(sensor_id)
+for sensor_id in tolthawk_valid_sensors:
+    ts: Timeseries = fetch_tolthawk_iv(sensor_id, start_dt, now_dt)
 
     # datetime list of reeadings or average reading per dat
     sites[sensor_id]: dict[str, list[float] | float] = dict()
-    for reading in readings:
-        date_time = reading['DT'].split('T')[0]
-        waterlevel = reading['WLV']
-        flow = height_to_streamflow(date_time, waterlevel)
+    for reading in ts:
+        date_time = datetime.fromtimestamp(reading.timestamp, pytz.timezone('US/Eastern')).strftime('%Y-%m-%d')
+        flow = reading.flow
+
+        print(sensor_id, date_time, reading)
+        exit(0)
 
         if date_time not in sites[sensor_id]:
             sites[sensor_id][date_time] = []
@@ -84,7 +46,7 @@ for sensor in sensor_status:
         mean_flow = sum(flows) / len(flows)
         sites[sensor_id][date] = mean_flow
 
-    print(len(readings), "readings", len(sites[sensor_id]), "days", "| mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
+    print(len(ts), "readings", len(sites[sensor_id]), "days", "| mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
     # sort dates
     sites[sensor_id] = dict(sorted(sites[sensor_id].items()))
 

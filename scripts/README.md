@@ -35,3 +35,7 @@ Finally, there is a real-time component for data segments not packaged here. `sc
     systemctl enable sjrbc-gunicorn
     systemctl start sjrbc-gunicorn    
 ```
+
+
+Test:
+`curl 159.89.48.126:5003/timeseries-since/tolthawk-395/1751557548`

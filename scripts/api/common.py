@@ -4,6 +4,7 @@ from dataclasses import dataclass
 class TimeseriesRecord:
     timestamp: int
     flow: float
+    height: float | None
 
 
 type Timeseries = list[TimeseriesRecord]

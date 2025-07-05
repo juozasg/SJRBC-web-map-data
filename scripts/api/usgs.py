@@ -6,6 +6,8 @@ import requests
 
 from .common import Timeseries, TimeseriesRecord
 
+usgs_ids = ['04096405', '04096515', '04097500', '040975299', '04097540', '04099000', '04100500', '04101000', '04101500', '04101800', '04102500', '04099750']
+
 def varname(name: str):
     # find substring in variable_name and return a more readable name
     if 'Temperature' in name:
@@ -46,7 +48,7 @@ def usgs_ts_to_timeseries(series: list[dict]) -> Timeseries:
         for value_entry in s['values'][0]['value']:
             date_time = dateutil.parser.isoparse(value_entry['dateTime']).astimezone(pytz.utc)
             value = float(value_entry['value'])
-            tseries.append(TimeseriesRecord(timestamp=int(date_time.timestamp()), flow=value))
+            tseries.append(TimeseriesRecord(timestamp=int(date_time.timestamp()), flow=value, height=None))
 
     return tseries
 

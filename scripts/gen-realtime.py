@@ -7,8 +7,8 @@ from datetime import datetime, timezone
 import pytz
 
 from api.common import Timeseries
-from api.tolthawk import fetch_tolthawk_iv
-from api.usgs import fetch_usgs_iv
+from api.tolthawk import fetch_tolthawk_iv, tolthawk_valid_sensors
+from api.usgs import fetch_usgs_iv, usgs_ids
 
 
 def write_csv(path, timeseries: Timeseries):
@@ -28,7 +28,6 @@ start_dt =  datetime(2023, 3, 1, 0, 0, tzinfo=pytz.utc)
 delta_dt = datetime(2025, 7, 1, 0, 0, tzinfo=pytz.utc)
 now_dt = datetime.now(timezone.utc)
 
-usgs_ids = ['04096405', '04096515', '04097500', '040975299', '04097540', '04099000', '04100500', '04101000', '04101500', '04101800', '04102500', '04099750']
 for site_id in usgs_ids:
     base_ts: Timeseries = fetch_usgs_iv(site_id, start_dt, delta_dt)
     delta_ts: Timeseries = fetch_usgs_iv(site_id, delta_dt, now_dt)
@@ -36,8 +35,7 @@ for site_id in usgs_ids:
     write_csv(f'../realtime/base/usgs-{site_id}.csv', base_ts)
     write_csv(f'../realtime/delta/usgs-{site_id}.csv', delta_ts)
 
-tt_ids = [397, 395, 398, 396, 394, 392, 399]
-for site_id in tt_ids:
+for site_id in tolthawk_valid_sensors:
     base_ts: Timeseries = fetch_tolthawk_iv(site_id, start_dt, delta_dt)
     delta_ts: Timeseries = fetch_tolthawk_iv(site_id, delta_dt, now_dt)
 
