@@ -53,9 +53,6 @@ def get_sensor_status():
 
 
 def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime) -> Timeseries:
-    get_sensor_status()
-    exit(0)
-
 
     start = from_dt.strftime('%Y%m%d%H%M')
     end = to_dt.strftime('%Y%m%d%H%M')
@@ -79,7 +76,7 @@ def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime) -> Tim
 def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
     tseries: Timeseries = []
     for reading in readings:
-        print("READING", reading)
+        # print("READING", reading)
         timestamp = int(datetime.fromisoformat(reading['DT']).timestamp())
         waterlevel = reading['WLV']
         groundheight = reading['GH']
