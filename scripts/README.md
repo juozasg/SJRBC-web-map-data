@@ -20,6 +20,9 @@ Finally, there is a real-time component for data segments not packaged here. `sc
 
 `api/tolthawk-login.sh` and `webservice/update-db.sh` should be added to cron
 
+
+
+
 ```aiignore
     */15 * * * * /somewhere/SJRBC-web-map-data/scripts/webservice/update-db.sh
     1 1 * * 1 /somewhere/SJRBC-web-map-data/scripts/api/tolthawk-login.sh
