@@ -1,0 +1,34 @@
+# SJRBC data scripts
+
+`init-python.sh` creates the venv and installs deps
+
+### build-indexes.py
+Builds `indexes` data with spatial indexes to get each sites contained in each the polygon feature (catchments, HUCs, etc). 
+
+### Tolthawk and USGS daily datasets
+`generate-tolthawk-csv.py` and `generate-usgs-csv.py` scripts add regular daily timeseries to the `datasets` folders for these two web APIs. USGS daily values are used for `flow`, `temp`, `height`, `do` variables as are available. For Tolthawk 15 minute `height` values are averaged to create daily values.
+
+Not all dates are used, but only the dates that contain data from other sites. This is determined by `dates_with_records.py`
+
+`tolthawk-login.py` will read the file `tolkhawk-login` that contains email and password as 2 lines and will create `tolthawk-token` file used to authenticate with tolthawk
+
+### Reatime Tolthawk and USGS
+
+Realtime (15 min) data is provided to the client with several layers of caching. `realtime/base` and `realtime/delta` folders contain segments of the full timeseries for each site. `base` segments should never be updated (always cached for the client) while `delta` files can be updated whenever needed by updating the files and pushing to git. `gen-realtime.py` builds both `base` and `delta` files. `base` code should be commented out normally.
+
+Finally, there is a real-time component for data segments not packaged here. `scripts/webservice` contains code for creating and updating the realtime db and serving it with `gunicorn`
+
+`api/tolthawk-login.sh` and `webservice/update-db.sh` should be added to cron
+
+```aiignore
+    */15 * * * * /somewhere/SJRBC-web-map-data/scripts/webservice/update-db.sh
+    1 1 * * 1 /somewhere/SJRBC-web-map-data/scripts/api/tolthawk-login.sh
+```
+
+`sjrbc-gunicorn.service` runs the webservice on systemd
+
+```aiignore
+    cp sjrbc-gunicorn.service /etc/systemd/system/
+    systemctl enable sjrbc-gunicorn
+    systemctl start sjrbc-gunicorn    
+```

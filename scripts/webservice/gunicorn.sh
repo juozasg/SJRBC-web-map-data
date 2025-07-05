@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-gunicorn -w 4 -b 0.0.0.0  'timeseries_api:app'
+gunicorn -w 2 -b 0.0.0.0  'timeseries_api:app'
