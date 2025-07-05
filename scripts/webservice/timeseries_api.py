@@ -55,7 +55,7 @@ def get_timeseries_csv(sensor_id, timestamp):
     since_timeseries.reverse()
     csv_rows = [','.join(row) for row in since_timeseries]
     csv_text = '\n'.join(csv_rows)
-    return Response(csv_text, mimetype='text')
+    return Response(csv_text, mimetype='text', headers={'Access-Control-Allow-Origin': '*'})
 
 
 load_csv_db()
