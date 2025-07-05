@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, jsonify, request
+from flask import Flask, Response, jsonify, request
 import glob
 import csv
 
@@ -35,7 +35,7 @@ def load_csv_db():
 
 
 @app.route('/timeseries-since/<sensor_id>/<int:timestamp>')
-def get_timeseries_json(sensor_id, timestamp):
+def get_timeseries_csv(sensor_id, timestamp):
     # path = f'{file_dir}/realtime-db/{sensor_id}.csv'
     if not sensor_id in sites_timeseries:
         return f"Not found {sensor_id}.csv"
@@ -53,7 +53,9 @@ def get_timeseries_json(sensor_id, timestamp):
     # add the header
     since_timeseries.append(all_timeseries[0])
     since_timeseries.reverse()
-    return since_timeseries
+    csv_rows = [','.join(row) for row in since_timeseries]
+    csv_text = '\n'.join(csv_rows)
+    return Response(csv_text, mimetype='text')
 
 
 load_csv_db()
