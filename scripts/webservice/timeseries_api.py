@@ -20,12 +20,12 @@ def load_csv_db():
     # Get all CSV files in the realtime-db folder
     csv_pattern = os.path.join(file_dir, 'realtime-db', '*.csv')
     csv_files = glob.glob(csv_pattern)
-    
+
     # Process each CSV file
     for csv_file in csv_files:
         # Extract sensor_id from filename (remove .csv extension)
         sensor_id = os.path.basename(csv_file)[:-4]
-        
+
         # Read the CSV file
         with open(csv_file, 'r') as f:
             csv_reader = csv.reader(f)
