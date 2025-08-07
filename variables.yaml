@@ -31,7 +31,7 @@ flow:
 # REALTIME water variables are only shown with water overlay selector for usgs and tolthawk sites
 rtflow:
   realtime: true
-  label: Streamflow
+  label: Real-tine Streamflow
   units: ft^3/s
   format: "%d"
   scale:
@@ -41,7 +41,7 @@ rtflow:
 
 rtexceedance:
   realtime: true
-  label: Exceedance
+  label: Real-time Exceedance
   units: '%'
   format: "%d"
   scale:
@@ -53,7 +53,7 @@ rtexceedance:
 
 rtheight:
   realtime: true
-  label: Gage Height
+  label: Real-time Gage Height
   units: ft
   scale:
     min: 0
