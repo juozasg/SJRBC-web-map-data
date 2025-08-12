@@ -7,7 +7,7 @@ from api.common import Timeseries, TimeseriesRecord
 tolthawk_valid_sensors = [393, 394, 395, 396, 397, 398, 399]
 
 # sensor ID to polynomial params X^2, X, C
-curves: dict[int: [float, float, float]] = {
+curves: dict[int, list[float]] = {
     393: [-33.4039,  59_168.1049,  -26_200_918.3488],
     394: [ 1.3458,  -2_133.9751,   845_920.2845],
     395: [ 7.9020,  -14_898.2806,  7_022_211.9933],
@@ -17,12 +17,22 @@ curves: dict[int: [float, float, float]] = {
     399: [ 38.4723, -58_123.5123,  21_953_055.762],
 }
 
+sealevels: dict[int, float] = {
+    393: 882.62,
+    394: 794.87,
+    395: 940.5,
+    396: 778.38,
+    397: 941.32,
+    398: 956.65,
+    399: 756.33
+}
 
 
 def height_to_streamflow(sensor_id, waterlevel):
-    return waterlevel * 10
-    # x2, x, c = curves[sensor_id]
-    # return (x2 * waterlevel * waterlevel) + (x * waterlevel) + c
+    # return waterlevel * 10
+    x2, x, c = curves[sensor_id]
+    print(x2, x, c, waterlevel)
+    return (x2 * waterlevel * waterlevel) + (x * waterlevel) + c
 
 
 def read_token():
@@ -97,18 +107,19 @@ def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime, debug 
 def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
     tseries: Timeseries = []
     for reading in readings:
-        # print("READING", reading)
         timestamp = int(datetime.fromisoformat(reading['DT']).timestamp())
         waterlevel = reading['WLV']
-        groundheight = reading['GH']
+        # groundheight = reading['GH']
         sensor_id = reading['Lid']
+        waterlevel = float(waterlevel) + sealevels[sensor_id]
         flow = height_to_streamflow(sensor_id, waterlevel)
+        print("READING", reading, 'SL waterlevel', waterlevel, 'flow', flow)
         tseries.append(TimeseriesRecord(timestamp=timestamp, flow=flow, height=float(waterlevel)))
     return tseries
 
 if __name__ == "__main__":
     # print(get_region_status())
     # print(get_sensor_status(393))
-    fetch_tolthawk_iv(395, datetime(2025, 7, 7), datetime(2025, 7, 8), True)
+    fetch_tolthawk_iv(395, datetime(2025, 8, 12), datetime(2025, 8, 13), False)
 
 
