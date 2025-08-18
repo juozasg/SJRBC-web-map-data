@@ -7,7 +7,7 @@ User=USERNAME
 Group=GROUP
 WorkingDirectory=/somewhere/SJRBC-web-map-data/scripts
 Environment="PATH=/somewhere/SJRBC-web-map-data/scripts/.venv/bin" "PYTHONPATH=/somewhere/SJRBC-web-map-data/scripts/"
-ExecStart=/somewhere/SJRBC-web-map-data/scripts/.venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5003 timeseries_api:app
+ExecStart=/somewhere/SJRBC-web-map-data/scripts/.venv/bin/gunicorn --certfile=/root/timeseries-server.crt --keyfile=/root/timeseries-server.key --workers 3 --bind 0.0.0.0:5003 timeseries_api:app
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5
