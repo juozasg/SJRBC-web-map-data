@@ -25,4 +25,5 @@ Each site belongs to multiple regions/areas (polygons): HUCs, state and a county
 Dataset files contain rows for each site and for each time point for the site. Each row must have a `siteId` field (referring to `sites.csv`) and a `date` field that's formatted `YYYY-MM-DD`
 
 https://docs.google.com/document/d/1pWqvHNNVfzj7IMEtLlDoVPWuivBZYijpp8Dl4jVxAp4/
+note this is the latest change
 
