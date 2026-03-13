@@ -8,7 +8,7 @@ tolthawk_valid_sensors = [393, 394, 395, 396, 397, 398, 399]
 
 # sensor ID to polynomial params X^2, X, C
 curves: dict[int, list[float]] = {
-    393: [-33.4039,  59_168.1049,  -26_200_918.3488],
+    393: [-32.3888163018327,  57_369.2128341629,  -25_403_968.3756699],
     394: [ 1.3458,  -2_133.9751,   845_920.2845],
     395: [ 7.9020,  -14_898.2806,  7_022_211.9933],
     396: [ 8.8916,  -13,855.6495,  5_397_769.6746],
@@ -120,6 +120,6 @@ def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
 if __name__ == "__main__":
     # print(get_region_status())
     # print(get_sensor_status(393))
-    fetch_tolthawk_iv(395, datetime(2025, 8, 12), datetime(2025, 8, 13), False)
+    fetch_tolthawk_iv(393, datetime(2025, 8, 12), datetime(2025, 8, 13), True)
 
 
