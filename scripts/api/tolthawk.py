@@ -16,8 +16,9 @@ from api.common import Timeseries, TimeseriesRecord
 # 399 - Little Elkhart River at US-120 (7805)
 
 
-# 399 is offline
-tolthawk_valid_sensors = [392, 393, 394, 395, 396, 397, 398]
+# 399 is offline since feb 2026 but previous data is good
+# 397 curve is wrong at the moment
+tolthawk_valid_sensors = [392, 393, 394, 395, 396, 397, 398, 399]
 
 # sensor ID to polynomial params X^2, X, C
 curves: dict[int, list[float]] = {
@@ -27,17 +28,17 @@ curves: dict[int, list[float]] = {
     395: [ 7.76489716486637,    -14_639.4554711765,     6_900_080.39497958],
     396: [ 8.89159482087575,    -13_855.6495255451,     5_397_769.6745776],
     397: [ 38.2326321203807,    -72_143.9952767551,     34_033_466.4532125],
-    398: [3.92295660400168,     -7_487_8476610553,      3_572_965.82237962],
+    398: [3.92295660400168,     -7_487.8476610553,      3_572_965.82237962],
     399: [43.313898878434,      -65_456.634484499,      24_729_779.9770313],
 }
 
 sealevels: dict[int, float] = {
-    392: 888,
+    392: 738.16,
     393: 882.62,
     394: 794.87,
     395: 940.5,
     396: 778.38,
-    397: 941.32,
+    397: 935.33,
     398: 956.65,
     399: 756.33
 }
@@ -135,6 +136,6 @@ def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
 if __name__ == "__main__":
     # print(get_region_status())
     # print(get_sensor_status(393))
-    fetch_tolthawk_iv(392, datetime(2025, 8, 12), datetime(2025, 8, 13), True)
+    fetch_tolthawk_iv(399, datetime(2026, 1, 16), datetime(2026, 1, 17), True)
 
 
