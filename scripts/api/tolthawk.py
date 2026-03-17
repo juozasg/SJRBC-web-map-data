@@ -4,20 +4,35 @@ import requests
 
 from api.common import Timeseries, TimeseriesRecord
 
-tolthawk_valid_sensors = [393, 394, 395, 396, 397, 398, 399]
+
+# 392 - Baugo Creek CR 1
+# 393 - NB1 - North Branch Elkhart River - Topeka (W800S)
+# 394 - Phillips Ditch Station 2 (Kern Road)
+# 395 - NB3 - North Branch Elkhart River - Milford (IN-3)
+
+# 396 - Phillips Ditch Station 1 (U.S. 20)
+# 397 - NB2 - North Branch Elkhart River - Kendallville (N600E)
+# 398 - Fawn River (FR1) - Nevada Mills (N500W)
+# 399 - Little Elkhart River at US-120 (7805)
+
+
+# 399 is offline
+tolthawk_valid_sensors = [392, 393, 394, 395, 396, 397, 398]
 
 # sensor ID to polynomial params X^2, X, C
 curves: dict[int, list[float]] = {
-    393: [-32.3888163018327,  57_369.2128341629,  -25_403_968.3756699],
-    394: [ 1.3458,  -2_133.9751,   845_920.2845],
-    395: [ 7.9020,  -14_898.2806,  7_022_211.9933],
-    396: [ 8.8916,  -13,855.6495,  5_397_769.6746],
-    397: [ 40.5930, -76_601.0360,  36_137_494.6487],
-    398: [-14.8347,  28_530.5057, -13_717_545.2763],
-    399: [ 38.4723, -58_123.5123,  21_953_055.762],
+    392: [-1.26075370976264,    1_910.26485060629,      -723_129.95585746],
+    393: [-32.3888163018327,    57_369.2128341629,      -25_403_968.3756699],
+    394: [ 1.345813553894,      -2_133.975147433,       845_920.284518411],
+    395: [ 7.76489716486637,    -14_639.4554711765,     6_900_080.39497958],
+    396: [ 8.89159482087575,    -13_855.6495255451,     5_397_769.6745776],
+    397: [ 38.2326321203807,    -72_143.9952767551,     34_033_466.4532125],
+    398: [3.92295660400168,     -7_487_8476610553,      3_572_965.82237962],
+    399: [43.313898878434,      -65_456.634484499,      24_729_779.9770313],
 }
 
 sealevels: dict[int, float] = {
+    392: 888,
     393: 882.62,
     394: 794.87,
     395: 940.5,
@@ -120,6 +135,6 @@ def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
 if __name__ == "__main__":
     # print(get_region_status())
     # print(get_sensor_status(393))
-    fetch_tolthawk_iv(393, datetime(2025, 8, 12), datetime(2025, 8, 13), True)
+    fetch_tolthawk_iv(392, datetime(2025, 8, 12), datetime(2025, 8, 13), True)
 
 
