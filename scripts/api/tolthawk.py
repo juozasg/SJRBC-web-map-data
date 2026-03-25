@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 
 from api.common import Timeseries, TimeseriesRecord
@@ -17,7 +17,6 @@ from api.common import Timeseries, TimeseriesRecord
 
 
 # 399 is offline since feb 2026 but previous data is good
-# 397 curve is wrong at the moment
 tolthawk_valid_sensors = [392, 393, 394, 395, 396, 397, 398, 399]
 
 # sensor ID to polynomial params X^2, X, C
@@ -27,9 +26,9 @@ curves: dict[int, list[float]] = {
     394: [ 1.345813553894,      -2_133.975147433,       845_920.284518411],
     395: [ 7.76489716486637,    -14_639.4554711765,     6_900_080.39497958],
     396: [ 8.89159482087575,    -13_855.6495255451,     5_397_769.6745776],
-    397: [ 38.2326321203807,    -72_143.9952767551,     34_033_466.4532125],
-    398: [3.92295660400168,     -7_487.8476610553,      3_572_965.82237962],
-    399: [43.313898878434,      -65_456.634484499,      24_729_779.9770313],
+    397: [ 23.1681316279053,    -43_368.9631642991,     20_295_836.7829409],
+    398: [ 3.92295660400168,    -7_487.8476610553,      3_572_965.82237962],
+    399: [ 43.313898878434,     -65_456.634484499,      24_729_779.9770313],
 }
 
 sealevels: dict[int, float] = {
@@ -47,7 +46,7 @@ sealevels: dict[int, float] = {
 def height_to_streamflow(sensor_id, waterlevel):
     # return waterlevel * 10
     x2, x, c = curves[sensor_id]
-    print(x2, x, c, waterlevel)
+    # print(x2, x, c, waterlevel)
     return (x2 * waterlevel * waterlevel) + (x * waterlevel) + c
 
 
@@ -118,9 +117,9 @@ def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime, debug 
     if debug:
         print(response.json())
     # Parse response JSON
-    return api_readings_to_timeseries(response.json())
+    return api_readings_to_timeseries(response.json(), debug)
 
-def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
+def api_readings_to_timeseries(readings: list[dict], debug = False) -> Timeseries:
     tseries: Timeseries = []
     for reading in readings:
         timestamp = int(datetime.fromisoformat(reading['DT']).timestamp())
@@ -129,13 +128,19 @@ def api_readings_to_timeseries(readings: list[dict]) -> Timeseries:
         sensor_id = reading['Lid']
         waterlevel = float(waterlevel) + sealevels[sensor_id]
         flow = height_to_streamflow(sensor_id, waterlevel)
-        print("READING", reading, 'SL waterlevel', waterlevel, 'flow', flow)
+        if debug:
+            print("READING", reading, 'SL waterlevel', waterlevel, 'flow', flow)
         tseries.append(TimeseriesRecord(timestamp=timestamp, flow=flow, height=float(waterlevel)))
     return tseries
 
 if __name__ == "__main__":
     # print(get_region_status())
     # print(get_sensor_status(393))
-    fetch_tolthawk_iv(399, datetime(2026, 1, 16), datetime(2026, 1, 17), True)
+    end_dt = datetime.now()
+    # start_dt = end_dt - timedelta(hours=24)
+    start_dt = end_dt - timedelta(days=10)
+
+    fetch_tolthawk_iv(393, start_dt, end_dt, True)
+    # fetch_tolthawk_iv(392, datetime(2026, 1, 16), datetime(2026, 1, 17), True)
 
 
