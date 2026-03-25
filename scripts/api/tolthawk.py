@@ -104,7 +104,8 @@ def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime, debug 
 
     # sensor_id = 393
     url = f"https://sensors.tolthawk.com/api/mobile/WaterLevels/{sensor_id}/{date_range}"
-    print(f"Fetching tolthawk-{sensor_id} from {url}")
+    if debug:
+        print(f"Fetching tolthawk-{sensor_id} from {url}")
 
     headers = {
         "Content-Type": "application/json",
@@ -127,10 +128,11 @@ def api_readings_to_timeseries(readings: list[dict], debug = False) -> Timeserie
         # groundheight = reading['GH']
         sensor_id = reading['Lid']
         waterlevel = float(waterlevel) + sealevels[sensor_id]
-        flow = height_to_streamflow(sensor_id, waterlevel)
-        if debug:
-            print("READING", reading, 'SL waterlevel', waterlevel, 'flow', flow)
-        tseries.append(TimeseriesRecord(timestamp=timestamp, flow=flow, height=float(waterlevel)))
+        if waterlevel >= 0:
+            flow = height_to_streamflow(sensor_id, waterlevel)
+            if debug:
+                print("READING", reading, 'SL waterlevel', waterlevel, 'flow', flow)
+            tseries.append(TimeseriesRecord(timestamp=timestamp, flow=flow, height=float(waterlevel)))
     return tseries
 
 if __name__ == "__main__":

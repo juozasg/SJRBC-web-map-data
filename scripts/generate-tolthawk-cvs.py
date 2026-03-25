@@ -16,16 +16,17 @@ args = parser.parse_args()
 datasets_dir = args.datasets_dir
 output_path = os.path.join(args.datasets_dir, 'tolthawk.csv')
 
-start_dt =  datetime(2022, 7, 19, 0, 0, tzinfo=pytz.utc)
-# start_dt =  datetime(2025, 7, 19, 0, 0, tzinfo=pytz.utc)
+start_dt =  datetime(2023, 1, 1, 0, 0, tzinfo=pytz.utc)
+start_dt =  datetime(2026, 1, 1, 0, 0, tzinfo=pytz.utc)
 now_dt = datetime.now(timezone.utc)
 
 sites: dict[int, dict] = dict()
 
-for sensor_id in tolthawk_valid_sensors:
+# for sensor_id in tolthawk_valid_sensors:
+for sensor_id in [399]:
     # ts: Timeseries = fetch_tolthawk_iv(sensor_id, start_dt, now_dt)
     # Split [start_dt, now_dt] into 10 sections
-    section_count = 1
+    section_count = 5
     total_span = now_dt - start_dt
     section_span = total_span / section_count
 
@@ -58,7 +59,7 @@ for sensor_id in tolthawk_valid_sensors:
         mean_flow = sum(flows) / len(flows)
         sites[sensor_id][date] = mean_flow
 
-    print(len(ts), "IV readings", len(sites[sensor_id]), "daily means", "| total mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
+    print(sensor_id, len(ts), "IV readings", len(sites[sensor_id]), "daily means", "| total mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
     # sort dates
     sites[sensor_id] = dict(sorted(sites[sensor_id].items()))
 
