@@ -9,9 +9,10 @@ from datetime import datetime, timedelta
 from glob import glob
 from collections import defaultdict
 
-def get_unique_dates():
+# add all days before 2022-07-19 that have a timeseries variable record and every day after 2022-07-19
+def get_unique_dates(datasets_dir: str ) -> list[str]:
     # Get all csv files in datasets directory
-    csv_files = glob(os.path.join('datasets', '*.csv'))
+    csv_files = glob(os.path.join(datasets_dir, '*.csv'))
 
     # Filter out usgs.csv and tolthawk.csv
     csv_files = [f for f in csv_files if not (f.endswith('usgs.csv') or f.endswith('tolthawk.csv'))]
@@ -19,9 +20,10 @@ def get_unique_dates():
     # Set to store unique dates
     unique_dates = set()
 
+    print(f"get_unique_dates: Found {len(csv_files)} CSV files in {datasets_dir}")
     # Process each CSV file
     for csv_file in csv_files:
-        print(f"Processing {csv_file}...")
+        # print(f"Processing {csv_file}...")
 
         with open(csv_file, 'r', newline='') as f:
             reader = csv.reader(f)
@@ -43,7 +45,6 @@ def get_unique_dates():
                         continue
 
                     try:
-
                         # Try to convert from MM/DD/YYYY format to datetime
                         date_obj = datetime.strptime(date_str, '%m/%d/%Y')
                         # Convert to YYYY-MM-DD format
@@ -60,7 +61,9 @@ def get_unique_dates():
 
     # for each year from 1989 add 04-01 and 10-01 to the unique dates
     for year in range(1989, datetime.now().year):
+        unique_dates.add(f"{year}-01-01")
         unique_dates.add(f"{year}-04-01")
+        unique_dates.add(f"{year}-07-01")
         unique_dates.add(f"{year}-10-01")
 
     # add every day from 2022-07-18 to 2025-01-01
@@ -75,6 +78,9 @@ def get_unique_dates():
 
     # Sort the unique dates
     sorted_dates = sorted(unique_dates)
+
+    # print(sorted_dates)
+    print(f"Total unique dates: {len(sorted_dates)}")
 
     return sorted_dates
 

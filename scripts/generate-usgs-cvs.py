@@ -2,13 +2,19 @@
 
 from datetime import datetime
 import requests
-import json
 import csv
 import os
+import argparse
 from collections import defaultdict
-# import local python file
 import dates_with_records as dwr
 from api.usgs import usgs_ids
+
+parser = argparse.ArgumentParser(description='Cache USGS NWIS daily data in CSV format.')
+parser.add_argument('datasets_dir', help='Directory where usgs.csv will be written. Also contains timeseries csv files which are used to select what days of USGS record are taken')
+args = parser.parse_args()
+
+datasets_dir = args.datasets_dir
+output_path = os.path.join(args.datasets_dir, 'usgs.csv')
 
 
 def varname(variable_name):
@@ -34,8 +40,6 @@ ids = ','.join(usgs_ids)
 url = f'https://waterservices.usgs.gov/nwis/dv/?format=json&sites={ids}&statCd=00003&siteStatus=all&startDT=1981-01-01&endDT={endDate}'
 print(f"URL: {url}")
 
-# Create datasets directory if it doesn't exist
-os.makedirs('datasets', exist_ok=True)
 
 # Get JSON data from URL
 print(f"Fetching data from {url}")
@@ -72,15 +76,15 @@ if response.status_code == 200:
     for site_id in site_data:
         site_data[site_id] = dict(sorted(site_data[site_id].items()))
 
-    unique_dates = dwr.get_unique_dates()
+    unique_dates = dwr.get_unique_dates(datasets_dir)
     # delete dates that do not have records
     for site_id in list(site_data.keys()):
         for date in list(site_data[site_id].keys()):
             if date not in unique_dates:
                 del site_data[site_id][date]
     # Open CSV file for writing
-    with open('../datasets/usgs.csv', 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
+    with open(output_path, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile, lineterminator='\n')
 
         # Write header
         csv_writer.writerow(['siteId', 'date', 'flow', 'temp', 'spc', 'do'])

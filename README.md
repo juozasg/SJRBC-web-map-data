@@ -15,15 +15,15 @@ The dataset names in `sites.csv` refer to files containing the data for the site
 
 
 
-### Indexes
+### geojson geometries
 
-Each site belongs to multiple regions/areas (polygons): HUCs, state and a county. `indexes` folder contains this geo-index. Whenever new sites are added the indexes must be rebuild with `build-indexes.rb`.
+Sites (points), rivers (lines), states/counties/HUCs (polygons) and site/river catchments (polygons) are all found `geojson` folder.
+
+Catchments are calculated from from `sites.csv` by manually placing each site on a hydrological D8 accumulation flow raster map in QGIS and then using the codes and documentation in the [condem-pysheds](https://github.com/juozasg/condem-sheds) repository to generate catchment rasters, convert them to polygons and merge them into geojson files.
 
 
-### dataset CSV files
+### Geoindexes
 
-Dataset files contain rows for each site and for each time point for the site. Each row must have a `siteId` field (referring to `sites.csv`) and a `date` field that's formatted `YYYY-MM-DD`
+Each site belongs to multiple regions/areas (polygons): HUCs, state and a county. `indexes` folder contains this geoindex. Whenever new sites are added the indexes must be rebuild with `scripts/build-indexes.py`.
 
-https://docs.google.com/document/d/1pWqvHNNVfzj7IMEtLlDoVPWuivBZYijpp8Dl4jVxAp4/
-note this is the latest change
 

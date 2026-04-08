@@ -4,7 +4,7 @@ from itertools import chain
 from shapely.geometry import shape, Point, Polygon, MultiPolygon
 
 # get a list of Point coordinates from sites.geojson
-sitesFeatures = json.load(open('geojson/site.geojson', 'r'))['features']
+sitesFeatures = json.load(open('../geojson/site.geojson', 'r'))['features']
 siteLonLat: dict[int, Point] = {}
 
 print("TOTAL NUMBER sites:", len(sitesFeatures))
@@ -75,5 +75,5 @@ if __name__ == "__main__":
         allSiteIds = flatten(list(featureSiteIds.values()))
 
         print(featureSiteIds)
-        json.dump(featureSiteIds, open(f'indexes/{regionType}.json', 'w'), indent=None)
-        print(f"Wrote indexes/{regionType}.json")
+        json.dump(featureSiteIds, open(f'../indexes/{regionType}.json', 'w'), indent=None)
+        print(f"Wrote ../indexes/{regionType}.json")
