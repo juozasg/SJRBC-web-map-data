@@ -24,16 +24,10 @@ os.makedirs('../realtime/base', exist_ok=True)
 os.makedirs('../realtime/delta', exist_ok=True)
 
 
-start_dt =  datetime(2023, 3, 1, 0, 0, tzinfo=pytz.utc)
-delta_dt = datetime(2026, 3, 1, 0, 0, tzinfo=pytz.utc)
+start_dt =  datetime(2022, 1, 1, 0, 0, tzinfo=pytz.utc)
+delta_dt = datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
 now_dt = datetime.now(timezone.utc)
 
-for site_id in usgs_ids:
-    base_ts: Timeseries = fetch_usgs_iv(site_id, start_dt, delta_dt)
-    delta_ts: Timeseries = fetch_usgs_iv(site_id, delta_dt, now_dt)
-
-    write_csv(f'../realtime/base/usgs-{site_id}.csv', base_ts)
-    write_csv(f'../realtime/delta/usgs-{site_id}.csv', delta_ts)
 
 for site_id in tolthawk_valid_sensors:
     base_ts: Timeseries = fetch_tolthawk_iv(site_id, start_dt, delta_dt)
@@ -43,5 +37,9 @@ for site_id in tolthawk_valid_sensors:
     write_csv(f'../realtime/delta/tolthawk-{site_id}.csv', delta_ts)
 
 
+for site_id in usgs_ids:
+    base_ts: Timeseries = fetch_usgs_iv(site_id, start_dt, delta_dt)
+    delta_ts: Timeseries = fetch_usgs_iv(site_id, delta_dt, now_dt)
 
-
+    write_csv(f'../realtime/base/usgs-{site_id}.csv', base_ts)
+    write_csv(f'../realtime/delta/usgs-{site_id}.csv', delta_ts)

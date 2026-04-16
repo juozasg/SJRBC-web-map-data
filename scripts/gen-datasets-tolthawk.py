@@ -23,20 +23,7 @@ sites: dict[int, dict] = dict()
 
 for sensor_id in tolthawk_valid_sensors:
 # for sensor_id in [399]:
-    # ts: Timeseries = fetch_tolthawk_iv(sensor_id, start_dt, now_dt)
-    # Split [start_dt, now_dt] into 10 sections
-    section_count = 5
-    total_span = now_dt - start_dt
-    section_span = total_span / section_count
-
-    ts: Timeseries = []
-    for i in range(section_count):
-        section_start = start_dt + i * section_span
-        section_end = now_dt if i == section_count - 1 else start_dt + (i + 1) * section_span
-
-        ts_part: Timeseries = fetch_tolthawk_iv(sensor_id, section_start, section_end)
-        ts.extend(ts_part)
-
+    ts: Timeseries = fetch_tolthawk_iv(sensor_id, start_dt, now_dt)
 
     # datetime list of reeadings or average reading per dat
     sites[sensor_id]: dict[str, list[float] | float] = dict()
