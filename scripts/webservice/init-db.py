@@ -8,7 +8,7 @@ import pytz
 
 from api.common import Timeseries
 from api.tolthawk import fetch_tolthawk_iv, tolthawk_valid_sensors
-from api.usgs import fetch_usgs_iv
+from api.usgs import fetch_usgs_iv, usgs_ids
 
 
 def write_csv(path, timeseries: Timeseries):
@@ -29,7 +29,6 @@ start_dt =  datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
 now_dt = datetime.now(timezone.utc)
 print(now_dt, now_dt.timestamp())
 
-usgs_ids = ['04096405', '04096515', '04097500', '040975299', '04097540', '04099000', '04100500', '04101000', '04101500', '04101800', '04102500', '04099750']
 for site_id in usgs_ids:
     base_ts: Timeseries = fetch_usgs_iv(site_id, start_dt, now_dt)
 

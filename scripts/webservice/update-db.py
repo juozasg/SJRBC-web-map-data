@@ -8,7 +8,7 @@ import pytz
 
 from api.common import Timeseries
 from api.tolthawk import fetch_tolthawk_iv, tolthawk_valid_sensors
-from api.usgs import fetch_usgs_iv
+from api.usgs import fetch_usgs_iv, usgs_ids
 
 
 def append_csv(path, timeseries: Timeseries):
@@ -21,14 +21,22 @@ def append_csv(path, timeseries: Timeseries):
 
 
 def last_datetime(csv_file):
+    lines = 0
     with open(csv_file) as f:
         for line in f:
+            lines += 1
             pass
     last_line = line
+    if lines == 1:
+        return datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
+
     ts = last_line.split(',')[0]
-    dt = datetime.fromtimestamp(float(ts) + 60, pytz.utc) # skip a minute to avoid duplicate records
-    # print('last line for', csv_file, ts, dt)
-    return dt
+    try:
+        dt = datetime.fromtimestamp(float(ts) + 60, pytz.utc) # skip a minute to avoid duplicate records
+        # print('last line for', csv_file, ts, dt)
+        return dt
+    finally:
+        return datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
 
 
 file_dir = os.path.dirname(__file__)
@@ -40,7 +48,7 @@ os.makedirs(file_dir + '/realtime-db', exist_ok=True)
 now_dt = datetime.now(timezone.utc)
 
 
-usgs_ids = ['04096405', '04096515', '04097500', '040975299', '04097540', '04099000', '04100500', '04101000', '04101500', '04101800', '04102500', '04099750']
+
 for site_id in usgs_ids:
     path = f'{file_dir}/realtime-db/usgs-{site_id}.csv'
     dt = last_datetime(path)
