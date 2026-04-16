@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 import pytz
 
 from api.common import Timeseries
-from api.tolthawk import fetch_tolthawk_iv
+from api.tolthawk import fetch_tolthawk_iv, tolthawk_valid_sensors
 from api.usgs import fetch_usgs_iv
 
 
@@ -48,7 +48,7 @@ for site_id in usgs_ids:
     append_ts: Timeseries = fetch_usgs_iv(site_id, dt, now_dt)
     append_csv(path, append_ts)
 
-tt_ids = [397, 395, 398, 396, 394, 392, 399]
+tt_ids = tolthawk_valid_sensors
 for site_id in tt_ids:
     path = f'{file_dir}/realtime-db/tolthawk-{site_id}.csv'
     dt = last_datetime(path)
