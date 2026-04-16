@@ -100,6 +100,23 @@ def get_sensor_status(sensor_id: int):
 
 
 def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime, debug = False) -> Timeseries:
+    # Split [start_dt, now_dt] into sections
+    section_count = 10
+    total_span = to_dt - from_dt
+    section_span = total_span / section_count
+
+    ts: Timeseries = []
+    for i in range(section_count):
+        section_start = from_dt + i * section_span
+        section_end = to_dt if i == section_count - 1 else from_dt + (i + 1) * section_span
+
+        ts_part: Timeseries = fetch_tolthawk_iv_section(sensor_id, section_start, section_end, debug)
+        ts.extend(ts_part)
+
+    return ts
+
+
+def fetch_tolthawk_iv_section(sensor_id: int, from_dt: datetime, to_dt: datetime, debug = False) -> Timeseries:
     start = from_dt.strftime('%Y%m%d%H%M')
     end = to_dt.strftime('%Y%m%d%H%M')
     date_range = f"{start}-{end}2359"
