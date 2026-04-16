@@ -2,6 +2,8 @@
 
 `init-python.sh` creates the venv and installs deps
 
+Run `. .venv/bin/activate` to activate the python venv.
+
 ### build-indexes.py
 Builds `indexes` data with spatial indexes to get a list of sites contained in each of the polygon features (catchments, HUCs, etc).
 
