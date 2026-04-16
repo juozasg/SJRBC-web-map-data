@@ -101,6 +101,7 @@ if response.status_code == 200:
                     variables.get('do', '')
                 ]
                 csv_writer.writerow(row)
+            print(f"Last row for {site_id}: {row}")
 
     print(f"Data saved to datasets/usgs.csv")
 else:
