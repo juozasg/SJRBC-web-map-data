@@ -100,6 +100,8 @@ def get_sensor_status(sensor_id: int):
 
 
 def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime, debug = False) -> Timeseries:
+    if to_dt - from_dt <= timedelta(days=30):
+        return fetch_tolthawk_iv_section(sensor_id, from_dt, to_dt, debug)
     # Split [start_dt, now_dt] into sections
     section_count = 10
     total_span = to_dt - from_dt
