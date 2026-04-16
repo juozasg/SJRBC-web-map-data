@@ -47,7 +47,10 @@ def height_to_streamflow(sensor_id, waterlevel):
     # return waterlevel * 10
     x2, x, c = curves[sensor_id]
     # print(x2, x, c, waterlevel)
-    return (x2 * waterlevel * waterlevel) + (x * waterlevel) + c
+    flow = (x2 * waterlevel * waterlevel) + (x * waterlevel) + c
+    if flow < 0:
+        flow = 0
+    return flow
 
 
 def read_token():
@@ -97,7 +100,6 @@ def get_sensor_status(sensor_id: int):
 
 
 def fetch_tolthawk_iv(sensor_id: int, from_dt: datetime, to_dt: datetime, debug = False) -> Timeseries:
-
     start = from_dt.strftime('%Y%m%d%H%M')
     end = to_dt.strftime('%Y%m%d%H%M')
     date_range = f"{start}-{end}2359"

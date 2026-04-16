@@ -25,7 +25,7 @@ os.makedirs('../realtime/delta', exist_ok=True)
 
 
 start_dt =  datetime(2023, 3, 1, 0, 0, tzinfo=pytz.utc)
-delta_dt = datetime(2025, 7, 1, 0, 0, tzinfo=pytz.utc)
+delta_dt = datetime(2026, 3, 1, 0, 0, tzinfo=pytz.utc)
 now_dt = datetime.now(timezone.utc)
 
 for site_id in usgs_ids:

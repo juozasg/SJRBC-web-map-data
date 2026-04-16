@@ -6,7 +6,7 @@ import csv
 import os
 import argparse
 from collections import defaultdict
-import dates_with_records as dwr
+import dates_that_have_records as dwr
 from api.usgs import usgs_ids
 
 parser = argparse.ArgumentParser(description='Cache USGS NWIS daily data in CSV format.')
@@ -76,7 +76,7 @@ if response.status_code == 200:
     for site_id in site_data:
         site_data[site_id] = dict(sorted(site_data[site_id].items()))
 
-    unique_dates = dwr.get_unique_dates(datasets_dir)
+    unique_dates = dwr.dates_that_have_records(datasets_dir)
     # delete dates that do not have records
     for site_id in list(site_data.keys()):
         for date in list(site_data[site_id].keys()):
