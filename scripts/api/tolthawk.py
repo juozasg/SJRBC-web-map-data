@@ -123,8 +123,10 @@ def fetch_tolthawk_iv_section(sensor_id: int, from_dt: datetime, to_dt: datetime
 
     # sensor_id = 393
     url = f"https://sensors.tolthawk.com/api/mobile/WaterLevels/{sensor_id}/{date_range}"
-    if debug:
-        print(f"Fetching tolthawk-{sensor_id} from {url}")
+    # if debug:
+        # print(f"Fetching tolthawk-{sensor_id} from {url}")
+
+    print(f"Fetching tolthawk-{sensor_id} from {url}")
 
     headers = {
         "Content-Type": "application/json",
