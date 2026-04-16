@@ -21,21 +21,22 @@ def append_csv(path, timeseries: Timeseries):
 
 
 def last_datetime(csv_file):
-    lines = 0
+    numlines = 0
     with open(csv_file) as f:
         for line in f:
-            lines += 1
+            numlines += 1
             pass
-    last_line = line
-    if lines == 1:
+
+    if numlines == 1:
         return datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
 
+    last_line = line
     ts = last_line.split(',')[0]
     try:
         dt = datetime.fromtimestamp(float(ts) + 60, pytz.utc) # skip a minute to avoid duplicate records
         # print('last line for', csv_file, ts, dt)
         return dt
-    finally:
+    except:
         return datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
 
 
