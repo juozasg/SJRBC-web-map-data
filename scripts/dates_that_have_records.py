@@ -2,6 +2,8 @@
 # each file format: siteId,date,variable1,variable2,variable3,...
 # excat all dates from all files
 # convert dates from MM/DD/YYYY format to YYYY-MM-DD format
+# for each year from 1989 append water quarter dates 01-01, 04-01, 07-01 and 10-01
+#
 # sort and print all unique dates
 import os
 import csv
@@ -10,7 +12,7 @@ from glob import glob
 from collections import defaultdict
 
 # add all days before 2022-07-19 that have a timeseries variable record and every day after 2022-07-19
-def get_unique_dates(datasets_dir: str ) -> list[str]:
+def dates_that_have_records(datasets_dir: str ) -> list[str]:
     # Get all csv files in datasets directory
     csv_files = glob(os.path.join(datasets_dir, '*.csv'))
 
@@ -66,8 +68,8 @@ def get_unique_dates(datasets_dir: str ) -> list[str]:
         unique_dates.add(f"{year}-07-01")
         unique_dates.add(f"{year}-10-01")
 
-    # add every day from 2022-07-18 to 2025-01-01
-    start_date = datetime(2022, 7, 18)
+    # add every day from 2022-01-01 to now
+    start_date = datetime(2022, 1, 1)
     end_date = datetime.now()
 
     # every day from start_date to end_date
@@ -86,7 +88,7 @@ def get_unique_dates(datasets_dir: str ) -> list[str]:
 
 
 if __name__ == "__main__":
-    sorted_dates = get_unique_dates()
+    sorted_dates = dates_that_have_records()
 
     # Print the sorted unique dates
     print("\nUnique dates in YYYY-MM-DD format:")

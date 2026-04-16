@@ -16,14 +16,13 @@ args = parser.parse_args()
 datasets_dir = args.datasets_dir
 output_path = os.path.join(args.datasets_dir, 'tolthawk.csv')
 
-start_dt =  datetime(2023, 1, 1, 0, 0, tzinfo=pytz.utc)
-start_dt =  datetime(2026, 1, 1, 0, 0, tzinfo=pytz.utc)
+start_dt =  datetime(2022, 1, 1, 0, 0, tzinfo=pytz.utc)
 now_dt = datetime.now(timezone.utc)
 
 sites: dict[int, dict] = dict()
 
-# for sensor_id in tolthawk_valid_sensors:
-for sensor_id in [399]:
+for sensor_id in tolthawk_valid_sensors:
+# for sensor_id in [399]:
     # ts: Timeseries = fetch_tolthawk_iv(sensor_id, start_dt, now_dt)
     # Split [start_dt, now_dt] into 10 sections
     section_count = 5
