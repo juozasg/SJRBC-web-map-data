@@ -18,6 +18,9 @@ For days before 2022-01-01 only the dates that contain dataset records are used.
 
 Realtime (15 min) data is provided to the client with several layers of caching. `realtime/base` and `realtime/delta` folders contain segments of the full timeseries for each site. `base` segments should never be updated (always cached for the client) while `delta` segments can be updated whenever needed by rebuilding the files and pushing to git. `gen-realtime-base-delta.py` builds both `base` and `delta` files. `base` generation code should be commented out normally.
 
+
+
+#### Realtime webservice
 Finally, there is a real-time component for data segments not packaged here. `scripts/webservice` contains code for creating and updating the realtime db and serving it with `gunicorn`
 
 `api/tolthawk-login.sh` and `webservice/update-db.sh` should be added to cron for the webservice to work:
@@ -28,7 +31,7 @@ Finally, there is a real-time component for data segments not packaged here. `sc
     1 1 * * 1 /somewhere/SJRBC-web-map-data/scripts/api/tolthawk-login.sh
 ```
 
-`sjrbc-gunicorn.service` runs the webservice on systemd:
+`sjrbc-gunicorn.service` runs the webservice on systemd. Update the file with your USERNAME, GROUP and deployment path and install:
 
 ```aiignore
     cp sjrbc-gunicorn.service /etc/systemd/system/
@@ -36,6 +39,12 @@ Finally, there is a real-time component for data segments not packaged here. `sc
     systemctl start sjrbc-gunicorn
 ```
 
+Run `scripts/webservice/init-db.sh` to initialize the timeseries database for the service
 
-Testing the webservice:
-`curl 159.89.48.126:5003/timeseries-since/tolthawk-395/1751557548`
+#### Testing the webservice
+
+`curl https://timeseries.riverdata.app:5003/timeseries-since/tolthawk-392/1776312948`
+
+#### Timestamps
+
+Timestamp conversion to datetime: https://www.epochconverter.com

@@ -24,7 +24,7 @@ file_dir = os.path.dirname(__file__)
 os.makedirs(file_dir + '/realtime-db', exist_ok=True)
 
 
-start_dt =  datetime(2022, 1, 1, 0, 0, tzinfo=pytz.utc)
+start_dt =  datetime(2026, 4, 1, 0, 0, tzinfo=pytz.utc)
 
 now_dt = datetime.now(timezone.utc)
 print(now_dt, now_dt.timestamp())
