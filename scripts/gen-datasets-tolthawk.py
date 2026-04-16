@@ -58,7 +58,7 @@ for sensor_id in tolthawk_valid_sensors:
         mean_flow = sum(flows) / len(flows)
         sites[sensor_id][date] = mean_flow
 
-    print(sensor_id, len(ts), "IV readings", len(sites[sensor_id]), "daily means", "| total mean flow", sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1))
+    print(f"tolthawk-{sensor_id}: {len(ts)} IV readings, {len(sites[sensor_id])} daily means, | total mean flow: {sum(sites[sensor_id].values()) / (len(sites[sensor_id]) or 1)}")
     # sort dates
     sites[sensor_id] = dict(sorted(sites[sensor_id].items()))
 
@@ -71,6 +71,8 @@ with open(output_path, 'w', newline='') as csvfile:
     for sensor_id, dates in sites.items():
         for date, flow in dates.items():
             csv_writer.writerow([f'tolthawk-{sensor_id}', date, flow])
+        print(f"Last row for {sensor_id}: {date}, {flow}")
+
 
     print(f"Data written to {output_path} for {len(sites)} sensors")
 
