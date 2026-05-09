@@ -1,0 +1,1 @@
+Phycocyanin is a type of algal pigment that is found in cyanobacteria. Measurements of phycocyanin can serve as an estimate for the amount of cyanobacteria in the water. This is important because some species of cyanobacteria are harmful to humans.
