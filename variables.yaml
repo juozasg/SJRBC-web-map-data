@@ -215,6 +215,14 @@ chlorophyll:
     max: 200
     d3: interpolateGreens
 
+phyco:
+  label: Phycocyanin
+  units: ug/L
+  scale:
+    min: 0
+    max: 5000
+    d3: interpolatePuBuGn
+
 # fish/invertebrates
 fishIbi:
   label: Fish IBI
